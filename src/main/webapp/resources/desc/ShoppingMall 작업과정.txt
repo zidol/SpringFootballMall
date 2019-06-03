@@ -1,0 +1,28 @@
+1. pom.xml 
+- maven dependency를 통한 API 다운로드
+
+2. \src\main\webapp\WEB-INF\web.xml
+- servlet-context.xml, root-context.xml 환경설정
+- encoding filter 설정 추가
+
+3. \src\main\webapp\WEB-INF\spring\appServlet\servlet-context.xml
+serlvet-context.xml
+
+- tiles3 환경설정, Interceptor 설정, MultipartResolver 설정
+- Component-scan 설정
+
+4. \src\main\webapp\WEB-INF\spring\
+mybatis-context.xml -> root-context.xml (원래 있는거 씀)
+- datasource(properties 파일) 설정, transaction 설정
+- Mybatis(config, mapper 설정), sqlSession 설정
+
+5. DB table 생성(Oracle)
+- goods, goods_image, order, car, member 테이블 생성
+
+6. Mybatis 설정
+- resource
+- mybatis.models/modelConfig.xml -> alias 설정
+- mybatis.mapper/goods.xml -> 계속 mapper 파일 추가
+7. Controller, Service, DAO 추가
+
+8. View 파일(jsp)추가

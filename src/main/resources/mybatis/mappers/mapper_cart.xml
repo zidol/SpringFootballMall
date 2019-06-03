@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.cart">
+
+	<resultMap type="cartVO" id="cartResult">
+		<id property="cart_id" column="cart_id" />
+		<result property="goods_id" column="goods_id" />
+		<result property="member_id" column="member_id" />
+		<result property="reg_date" column="reg_date" />
+		<result property="cart_goods_qty" column="cart_goods_qty" />
+	</resultMap>
+	
+	<resultMap type="goodsVO" id="goodsResult">
+		<id property="goods_id" column="goods_id" />
+		<result property="goods_sort" column="goods_sort" />
+		<result property="goods_title" column="goods_title" />
+		<result property="goods_manufacturer" column="goods_manufacturer" />
+		<result property="goods_production_date" column="goods_production_date" />
+		
+		<result property="goods_price" column="goods_price" />
+		<result property="goods_sales_price" column="goods_sales_price" />
+		<!-- <result property="goods_point" column="goods_point" /> -->
+		<result property="goods_delivery_price" column="goods_delivery_price" />
+		<result property="goods_delivery_date" column="goods_delivery_date" />
+		
+		<result property="goods_status" column="goods_status" />
+		<result property="goods_intro" column="goods_intro" />
+		<result property="goods_size" column="goods_size" />
+		<result property="goods_color" column="goods_color" />
+		<result property="goods_qty" column="goods_qty" />
+		<!-- <result property="goods_enter_date " column="goods_enter_date" /> -->
+		<result property="goods_fileName" column="filename" />
+	</resultMap>
+
+	<!-- 아이디로 장바구니 정보 확인 -->
+	<select id="selectCartList" resultMap="cartResult">
+		<![CDATA[
+			SELECT *
+			  FROM CART
+			 WHERE MEMBER_ID=#{member_id}
+			 order by cart_id
+		]]>
+	</select>
+	
+	<!-- 상품리스트를 입고일자 내림차순으로 조회 -->
+	<select id="selectGoodsList" parameterType="java.util.Map" resultMap="goodsResult">
+		<![CDATA[
+		SELECT G.*
+		     , I.FILENAME 
+		  FROM GOODS G
+		     , GOODS_IMAGE I
+		     , cart c
+		 WHERE G.GOODS_ID = I.GOODS_ID
+		 and i.goods_id = c.goods_id
+		   AND I.FILETYPE = 'main_image'
+		   AND G.GOODS_ID IN
+		]]>
+		<foreach item="item" collection="list" open="(" separator="," close=")">
+			#{item.goods_id}
+		</foreach>
+		 order by cart_id
+	</select>
+	
+	<!-- 상품아이디와 회원아디로 장바구니 유무 조회 -->
+	<select id="selectCountInCart" parameterType="cartVO" resultType="String">
+		<![CDATA[
+		SELECT DECODE(COUNT(*), 0, 'false','true')
+		  FROM CART
+		 WHERE GOODS_ID=#{goods_id}
+		   AND MEMBER_ID=#{member_id}
+		]]>
+	</select>
+	
+	<insert id="insertGoodsInCart" parameterType="cartVO">
+		<![CDATA[
+		INSERT INTO CART(CART_ID
+		               , GOODS_ID
+		               , MEMBER_ID)
+	 	         VALUES(#{cart_id}
+	 	              , #{goods_id}
+	 	              , #{member_id})
+		]]>
+	</insert>
+
+	<update id="updateCartGoodsQty" parameterType="cartVO">
+		<![CDATA[
+		UPDATE CART
+		   SET CART_GOODS_QTY=#{cart_goods_qty}
+		 WHERE MEMBER_ID=#{member_id}
+		   AND GOODS_ID=#{goods_id}
+		]]>
+	</update>
+	
+	<delete id="deleteCartGoods" parameterType="int">
+		<![CDATA[
+		DELETE 
+		  FROM CART
+		 WHERE CART_ID=#{cart_id}
+		]]>
+	</delete>
+	<!-- 장바구니 아이디 시퀀스 생성-->
+	<select id="selectMaxCartId" resultType="int">
+		<![CDATA[
+		SELECT COUNT(NVL(CART_ID, 0))+1
+		  FROM CART
+		]]>
+	</select>
+</mapper>

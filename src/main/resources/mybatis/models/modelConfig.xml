@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- Aliase 설정 -->
+	<typeAliases>
+		<typeAlias alias="goodsVO" type="com.shoppingmall.goods.vo.GoodsVO"/>
+		<typeAlias alias="imageFileVO" type="com.shoppingmall.goods.vo.ImageFileVO"/>
+		<typeAlias alias="memberVO" type="com.shoppingmall.member.vo.MemberVO"/>
+		<typeAlias alias="cartVO" type="com.shoppingmall.cart.vo.CartVO"/>
+		<typeAlias alias="orderVO" type="com.shoppingmall.order.vo.OrderVO"/>
+		<typeAlias alias="mypageVO" type="com.shoppingmall.mypage.vo.MyPageVO"/>
+	</typeAliases>
+	
+
+</configuration>

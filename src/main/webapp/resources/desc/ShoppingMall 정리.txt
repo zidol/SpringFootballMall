@@ -1,0 +1,52 @@
+<쇼핑몰 기능별 분류>
+
+1. 설정 파일
+	pom.xml - API 다운설치
+	web.xml - servlet-cotext.xml, root-context.xml 확인, encoding 추가
+	servlet-cotext.xml - ViewResolver 설정, tiles 설정, multipart 설정, ViewNameIntercepter 설정
+	root-context.xml - jdbc, DataSource, Mybatis, SqlSession 설정
+	
+2. View 설정
+	views - jsp파일
+	tiles - jsp 파일을 모아서 처리 하는 역할?
+	
+3. DB 설정 (Oracle)
+	- goods, goods-image, member, cart, order
+	
+4. Spring 처리
+
+VO -> Controller -> Service -> DAO -> Mybatis(config, mapper)
+
+<Spring 처리 기능별로 정리>
+-- 공통 작업 처리 --
+- ViewNameItercepter, BaseController, FileDownloadController, LogginAdvice
+- MainController
+- layout.jsp, header.jsp, side.jsp, footer.jsp, quickMenu.jsp
+
+** 1. 상품 처리(goods) **
+
+1). Views
+	- 상품 리스트 보기(main.jsp)
+	- 상품 상세보기(goodDetail.jsp)
+	- 검색 상품 보기(searchGoods.jsp)
+
+2). VO
+	- Goods, ImageFileVO
+
+3). Controller
+	- GoodsController, GoodsService,  GoodsDAO
+	
+4). Mapper
+	- goods.xml
+	
+** 2. 회원 가입, 로그인(member) **
+
+** 3. 장바구니 (cart) **
+
+** 4. 주문하기 (order) **
+
+** 5. 마이페이지 (mypage) **
+- 회원정보 확인 수정, 장바구니, 주문 목록 확인
+
+** 6. 관리자 페이지 **
+- 상품 등록, 회원관리
