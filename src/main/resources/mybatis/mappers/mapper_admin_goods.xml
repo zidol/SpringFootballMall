@@ -8,17 +8,15 @@
 		<id property="goods_id" column="goods_id" />
 		<result property="goods_sort" column="goods_sort" />
 		<result property="goods_title" column="goods_title" />
-		<result property="goods_manufacturer" column="goods_manufacturer" />
 		<result property="goods_price" column="goods_price" />
 		<result property="goods_sales_price" column="goods_sales_price" />
+		<result property="goods_manufacturer" column="goods_manufacturer"/>
 		<result property="goods_production_date" column="goods_production_date" />
 		<result property="goods_delivery_price" column="goods_delivery_price" />
 		<result property="goods_delivery_date" column="goods_delivery_date" />
 		<result property="goods_status" column="goods_status" />
 		<result property="goods_intro" column="goods_intro" />
-		<result property="goods_status" column="goods_status" />
-		<result property="goods_fileName" column="filename" 
-		javaType="java.lang.String" jdbcType="CLOB"/>
+		<result property="goods_fileName" column="filename" />
 	</resultMap>
 	<!-- ImageFileVO, GOODS_IMAGE Table 매핑-->
 	<resultMap type="imageFileVO" id="imageResult">
@@ -84,7 +82,7 @@
 						  	  ,GOODS_DELIVERY_PRICE
 						  	  ,GOODS_DELIVERY_DATE
 						  	  ,GOODS_STATUS
-						  	  ,GOODS_INTRO)
+						  	  ,GOODS_INTRO
 				        VALUES(#{goods_id}
 						  	  ,#{goods_sort}
 						  	  ,#{goods_title}
@@ -120,7 +118,7 @@
 	</insert>
 	<!-- 상품 확인 페이지 (페이징 처리, 상품 입고일자로 검색) -->
 	<select id="selectNewGoodsList" resultMap="goodsResult" parameterType="java.util.Map">
-		<![CDATA[
+		
 			SELECT * FROM (SELECT ROWNUM AS RECNUM
 					     , t.*
 					  FROM (SELECT GOODS_ID
@@ -128,12 +126,21 @@
 							     , GOODS_MANUFACTURER
 							     , GOODS_SALES_PRICE
 							     , TO_CHAR(GOODS_ENTER_DATE, 'YYYY-MM-DD') AS GOODS_ENTER_DATE
-							     , TO_CHAR(GOODS_production_DATE, 'YYYY-MM-DD') AS GOODS_PRODUCTION_DATE
+							     , TO_CHAR(GOODS_PRODUCTION_DATE, 'YYYY-MM-DD') AS GOODS_PRODUCTION_DATE
 							  FROM GOODS
 							 WHERE TO_CHAR(GOODS_ENTER_DATE, 'YYYY-MM-DD') BETWEEN #{beginDate} and #{endDate}
+							 <if test="search_type=='goods_title'">
+			                          AND GOODS_TITLE LIKE '%'||#{search_word}||'%'
+			                       </if>
+			                       <if test="search_type=='goods_id'">
+			                          AND GOODS_ID LIKE '%'||#{search_word}||'%'
+			                       </if>
+			                       <if test="search_type=='goods_publisher'">
+			                          AND GOODS_MANUFACTURER LIKE '%'||#{search_word}||'%'
+			                       </if>
 						  ORDER BY GOODS_ENTER_DATE DESC)t)
 					WHERE RECNUM BETWEEN (#{section}-1)*100 + (#{pageNum}-1)*10+1 AND (#{section}-1)*100 + (#{pageNum})*10 	
-		]]>
+		
 	</select>
 	
 	<!-- 주문 상품 확인 페이지 (페이징 처리, 결제시간, 검색키워드 추가(주문자ID, 주문자 이름, 주문자 휴대폰 번호)) -->
@@ -143,14 +150,14 @@
 			                 FROM (SELECT * 
 			                         FROM ORDERS
 			                        WHERE TO_CHAR(PAY_ORDER_TIME, 'YYYY-MM-DD') BETWEEN #{beginDate} and #{endDate}
-			                       <if test="search_type=='order_id'">
-			                          AND ORDERER_ID=#{search_word}
+			                       <if test="search_type=='goods_title'">
+			                          AND GOODS_TITLE=#{search_word}
 			                       </if>
-			                       <if test="search_type=='orderer_name'">
-			                          AND ORDERER_NAME=#{search_word}
+			                       <if test="search_type=='goods_id'">
+			                          AND GOODS_ID=#{search_word}
 			                       </if>
-			                       <if test="search_type=='orderer_hp'">
-			                          AND ORDERER_HP=#{search_word}
+			                       <if test="search_type=='goods_publisher'">
+			                          AND GOODS_MANUFACTURER=#{search_word}
 			                       </if>
 			                       ORDER BY PAY_ORDER_TIME DESC
 			                       ) T)
@@ -159,7 +166,7 @@
 	</select>
 	
 	<!-- 상품 상세 정보확인 -->
-	<select id="selectGoodsDetail" resultMap="goodsResult" parameterType="String">
+	<select id="selectGoodsDetail" resultMap="goodsResult" parameterType="int">
 		<![CDATA[
 			SELECT G.*
 			     , TO_CHAR(G.GOODS_PRODUCTION_DATE, 'YYYY-MM-DD') AS GOODS_PRODUCTION_DATE
@@ -173,7 +180,7 @@
 	</select>
 	
 	<!-- 이미지 정보 확인 -->
-	<select id="selectGoodsImageFileList" resultMap="imageResult" parameterType="String">
+	<select id="selectGoodsImageFileList" resultMap="imageResult" parameterType="int">
 		<![CDATA[
 			SELECT * 
 			  FROM GOODS_IMAGE

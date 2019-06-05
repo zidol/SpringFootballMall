@@ -32,7 +32,7 @@ import com.shoppingmall.member.vo.MemberVO;
 @RequestMapping(value="/admin/goods")
 public class AdminGoodsControllerImpl extends BaseController implements AdminGoodsController{
 //	private static final String CURR_IMAGE_REPO_PATH = "C:\\shopping\\file_repo";
-	private static final String CURR_IMAGE_REPO_PATH = "/Users/zidol/Desktop/shopping/file_repo";
+	private static final String CURR_IMAGE_REPO_PATH = "/Users/zidol/Desktop/file_repo";
 	@Autowired
 	AdminGoodsService adminGoodsService;
 
@@ -48,11 +48,17 @@ public class AdminGoodsControllerImpl extends BaseController implements AdminGoo
 		String fixedSearchPeriod = dateMap.get("fixedSearchPeriod");
 		String section = dateMap.get("section");
 		String pageNum = dateMap.get("pageNum");
-		String beginDate = null, endDate = null;
+		String search_type = dateMap.get("search_type");
+		String search_word = dateMap.get("search_word");
+		String beginDate=dateMap.get("beginDate");
+		String endDate=dateMap.get("endDate");
 		
-		String[] tempDate = calcSearchPeriod(fixedSearchPeriod).split(",");
-		beginDate = tempDate[0];
-		endDate = tempDate[1];
+		if(beginDate == null) {
+			String [] tempDate=calcSearchPeriod(fixedSearchPeriod).split(",");
+			beginDate=tempDate[0];
+			endDate=tempDate[1];
+		}
+		
 		dateMap.put("beginDate", beginDate);
 		dateMap.put("endDate", endDate);
 		
@@ -68,6 +74,8 @@ public class AdminGoodsControllerImpl extends BaseController implements AdminGoo
 		condMap.put("pageNum", pageNum);
 		condMap.put("beginDate", beginDate);
 		condMap.put("endDate", endDate);
+		condMap.put("search_type",search_type);
+		condMap.put("search_word", search_word);
 		List<GoodsVO> newGoodsList = adminGoodsService.listNewGoods(condMap);
 		mav.addObject("newGoodsList", newGoodsList);
 		
@@ -121,8 +129,8 @@ public class AdminGoodsControllerImpl extends BaseController implements AdminGoo
 			if(imageFileList != null && imageFileList.size() != 0) {
 				for(ImageFileVO imageFileVO : imageFileList) {
 					imageFileName = imageFileVO.getFileName();
-					File srcFile = new File(CURR_IMAGE_REPO_PATH + "/" + "temp" + "/" + imageFileName);
-					File destDir = new File(CURR_IMAGE_REPO_PATH + "/" + goods_id);
+					File srcFile = new File(CURR_IMAGE_REPO_PATH + "\\" + "temp" + "\\" + imageFileName);
+					File destDir = new File(CURR_IMAGE_REPO_PATH + "\\" + goods_id);
 					FileUtils.moveFileToDirectory(srcFile, destDir, true);
 				}
 			}
@@ -134,7 +142,7 @@ public class AdminGoodsControllerImpl extends BaseController implements AdminGoo
 			if(imageFileList != null && imageFileList.size() != 0) {
 				for(ImageFileVO imageFileVO : imageFileList) {
 					imageFileName = imageFileVO.getFileName();
-					File srcFile = new File(CURR_IMAGE_REPO_PATH + "/" + "temp" + "/" + imageFileName);
+					File srcFile = new File(CURR_IMAGE_REPO_PATH + "\\" + "temp" + "\\" + imageFileName);
 					srcFile.delete();
 				}
 			}
@@ -210,8 +218,8 @@ public class AdminGoodsControllerImpl extends BaseController implements AdminGoo
 			    adminGoodsService.modifyGoodsImage(imageFileList);
 				for(ImageFileVO  imageFileVO:imageFileList) {
 					imageFileName = imageFileVO.getFileName();
-					File srcFile = new File(CURR_IMAGE_REPO_PATH+"/"+"temp"+"/"+imageFileName);
-					File destDir = new File(CURR_IMAGE_REPO_PATH+"/"+goods_id);
+					File srcFile = new File(CURR_IMAGE_REPO_PATH+"\\"+"temp"+"\\"+imageFileName);
+					File destDir = new File(CURR_IMAGE_REPO_PATH+"\\"+goods_id);
 					FileUtils.moveFileToDirectory(srcFile, destDir,true);
 				}
 			}
@@ -219,7 +227,7 @@ public class AdminGoodsControllerImpl extends BaseController implements AdminGoo
 			if(imageFileList!=null && imageFileList.size()!=0) {
 				for(ImageFileVO  imageFileVO:imageFileList) {
 					imageFileName = imageFileVO.getFileName();
-					File srcFile = new File(CURR_IMAGE_REPO_PATH+"/"+"temp"+"/"+imageFileName);
+					File srcFile = new File(CURR_IMAGE_REPO_PATH+"\\"+"temp"+"\\"+imageFileName);
 					srcFile.delete();
 				}
 			}
@@ -264,8 +272,8 @@ public class AdminGoodsControllerImpl extends BaseController implements AdminGoo
 			    adminGoodsService.addNewGoodsImage(imageFileList);
 				for(ImageFileVO  imageFileVO:imageFileList) {
 					imageFileName = imageFileVO.getFileName();
-					File srcFile = new File(CURR_IMAGE_REPO_PATH+"/"+"temp"+"/"+imageFileName);
-					File destDir = new File(CURR_IMAGE_REPO_PATH+"/"+goods_id);
+					File srcFile = new File(CURR_IMAGE_REPO_PATH+"\\"+"temp"+"\\"+imageFileName);
+					File destDir = new File(CURR_IMAGE_REPO_PATH+"\\"+goods_id);
 					FileUtils.moveFileToDirectory(srcFile, destDir,true);
 				}
 			}
@@ -273,7 +281,7 @@ public class AdminGoodsControllerImpl extends BaseController implements AdminGoo
 			if(imageFileList!=null && imageFileList.size()!=0) {
 				for(ImageFileVO  imageFileVO:imageFileList) {
 					imageFileName = imageFileVO.getFileName();
-					File srcFile = new File(CURR_IMAGE_REPO_PATH+"/"+"temp"+"/"+imageFileName);
+					File srcFile = new File(CURR_IMAGE_REPO_PATH+"\\"+"temp"+"\\"+imageFileName);
 					srcFile.delete();
 				}
 			}
@@ -290,7 +298,7 @@ public class AdminGoodsControllerImpl extends BaseController implements AdminGoo
 		
 		adminGoodsService.removeGoodsImage(image_id);
 		try{
-			File srcFile = new File(CURR_IMAGE_REPO_PATH+"/"+goods_id+"/"+imageFileName);
+			File srcFile = new File(CURR_IMAGE_REPO_PATH+"\\"+goods_id+"\\"+imageFileName);
 			srcFile.delete();
 		}catch(Exception e) {
 			e.printStackTrace();
