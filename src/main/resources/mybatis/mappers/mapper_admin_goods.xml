@@ -82,7 +82,7 @@
 						  	  ,GOODS_DELIVERY_PRICE
 						  	  ,GOODS_DELIVERY_DATE
 						  	  ,GOODS_STATUS
-						  	  ,GOODS_INTRO
+						  	  ,GOODS_INTRO)
 				        VALUES(#{goods_id}
 						  	  ,#{goods_sort}
 						  	  ,#{goods_title}
@@ -95,6 +95,19 @@
 						  	  ,#{goods_delivery_date}
 						  	  ,#{goods_status}
 						  	  ,#{goods_intro})
+    	]]>
+	</insert>
+	
+	<insert id="insertNewGoodsDetil" parameterType="java.util.HashMap"  >
+	    <![CDATA[
+			 INSERT INTO GOODS_DETAIL(GOODS_ID
+						  	  ,GOODS_SIZE
+						  	  ,GOODS_COLOR
+						  	  ,GOODS_QTY)
+				        VALUES(#{goods_id}
+						  	  ,#{goods_size}
+						  	  ,#{goods_color}
+						  	  ,#{goods_qty})
     	]]>
 	</insert>
 	

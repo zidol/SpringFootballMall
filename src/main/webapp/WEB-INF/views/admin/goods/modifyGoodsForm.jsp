@@ -35,16 +35,16 @@ function fn_modify_goods(goods_id, attribute){
 		value=frm_mod_goods.goods_title.value;
 	}else if(attribute=='goods_writer'){
 		value=frm_mod_goods.goods_writer.value;   
-	}else if(attribute=='goods_publisher'){
-		value=frm_mod_goods.goods_publisher.value;
+	}else if(attribute=='goods_manufacturer'){
+		value=frm_mod_goods.goods_manufacturer.value;
 	}else if(attribute=='goods_price'){
 		value=frm_mod_goods.goods_price.value;
 	}else if(attribute=='goods_sales_price'){
 		value=frm_mod_goods.goods_sales_price.value;
 	}else if(attribute=='goods_point'){
 		value=frm_mod_goods.goods_point.value;
-	}else if(attribute=='goods_published_date'){
-		value=frm_mod_goods.goods_published_date.value;
+	}else if(attribute=='goods_production_date'){
+		value=frm_mod_goods.goods_production_date.value;
 	}else if(attribute=='goods_page_total'){
 		value=frm_mod_goods.goods_page_total.value;
 	}else if(attribute=='goods_isbn'){
@@ -188,13 +188,9 @@ function fn_modify_goods(goods_id, attribute){
 	<!-- 내용 들어 가는 곳 -->
 	<DIV id="container">
 		<UL class="tabs">
-			<li><A href="#tab1">상품정보</A></li>
-			<li><A href="#tab2">상품목차</A></li>
-			<li><A href="#tab3">상품저자소개</A></li>
-			<li><A href="#tab4">상품소개</A></li>
-			<li><A href="#tab5">출판사 상품 평가</A></li>
-			<li><A href="#tab6">추천사</A></li>
-			<li><A href="#tab7">상품이미지</A></li>
+			<li><a href="#tab1">상품정보</a></li>
+			<li><a href="#tab4">상품소개</a></li>
+			<li><a href="#tab7">상품이미지</a></li>
 		</UL>
 		<DIV class="tab_container">
 			<DIV class="tab_content" id="tab1">
@@ -204,13 +200,53 @@ function fn_modify_goods(goods_id, attribute){
 				<td width=500>
 				  <select name="goods_sort">
 					<c:choose>
-				      <c:when test="${goods.goods_sort=='컴퓨터와 인터넷' }">
-						<option value="컴퓨터와 인터넷" selected>컴퓨터와 인터넷 </option>
-				  	    <option value="디지털 기기">디지털 기기  </option>
+				      <c:when test="${goods.goods_sort=='footballshoes' }">
+						<option value="footballshoes" selected>축구화</option>
+						<option value="sweater" >크루탑</option>
+						<option value="sox" >양말</option>
+						<option value="uniform" >유니폼</option>
+						<option value="fooballshoes" >트레이닝복</option>
+						<option value="fooballshoes" >악세사리</option>
 				  	  </c:when>
-				  	  <c:when test="${goods.goods_sort=='디지털 기기' }">
-						<option value="컴퓨터와 인터넷" >컴퓨터와 인터넷 </option>
-				  	    <option value="디지털 기기" selected>디지털 기기  </option>
+				  	  <c:when test="${goods.goods_sort=='sweater' }">
+						<option value="footballshoes" >축구화</option>
+						<option value="sweater" selected>크루탑</option>
+						<option value="sox" >양말</option>
+						<option value="uniform" >유니폼</option>
+						<option value="train" >트레이닝복</option>
+						<option value="accessorie" >악세사리</option>
+				  	  </c:when>
+				  	  <c:when test="${goods.goods_sort=='sox' }">
+						<option value="footballshoes" >축구화</option>
+						<option value="sweater" >크루탑</option>
+						<option value="sox" selected >양말</option>
+						<option value="uniform" >유니폼</option>
+						<option value="train" >트레이닝복</option>
+						<option value="accessorie" >악세사리</option>
+				  	  </c:when>
+				  	  <c:when test="${goods.goods_sort=='uniform' }">
+				  	  	<option value="footballshoes" >축구화</option>
+						<option value="sweater" >크루탑</option>
+						<option value="sox" >양말</option>
+						<option value="uniform" selected>유니폼</option>
+						<option value="train" >트레이닝복</option>
+						<option value="accessorie" >악세사리</option>
+				  	  </c:when>
+				  	  <c:when test="${goods.goods_sort=='train' }">
+				  	  	<option value="footballshoes" >축구화</option>
+						<option value="sweater" >크루탑</option>
+						<option value="sox" >양말</option>
+						<option value="uniform" >유니폼</option>
+						<option value="fooballshoes" selected>트레이닝복</option>
+						<option value="accessorie" >악세사리</option>
+				  	  </c:when>
+				  	  <c:when test="${goods.goods_sort=='accessorie' }">
+				  	  	<option value="footballshoes" >축구화</option>
+						<option value="sweater" >크루탑</option>
+						<option value="sox" >양말</option>
+						<option value="uniform" >유니폼</option>
+						<option value="train" >트레이닝복</option>
+						<option value="accessorie" selected>악세사리</option>
 				  	  </c:when>
 				  	</c:choose>
 					</select>
@@ -227,19 +263,19 @@ function fn_modify_goods(goods_id, attribute){
 				</td>
 			</tr>
 			
-			<tr>
+		<%-- 	<tr>
 				<td >저자</td>
 				<td><input name="goods_writer" type="text" size="40" value="${goods.goods_writer }" /></td>
 								<td>
 				 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_writer')"/>
 				</td>
 				
-			</tr>
+			</tr> --%>
 			<tr>
-				<td >출판사</td>
-				<td><input name="goods_publisher" type="text" size="40" value="${goods.goods_publisher }" /></td>
+				<td >제조사</td>
+				<td><input name="goods_manufacturer" type="text" size="40" value="${goods.goods_manufacturer }" /></td>
 			     <td>
-				  <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_publisher')"/>
+				  <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_manufacturer')"/>
 				</td>
 				
 			</tr>
@@ -274,31 +310,31 @@ function fn_modify_goods(goods_id, attribute){
 			<tr>
 				<td >상품출판일</td>
 				<td>
-				  <input  name="goods_published_date"  type="date"  value="${goods.goods_published_date }" />
+				  <input  name="goods_production_date"  type="date"  value="${goods.goods_production_date }" />
 				</td>
 				<td>
-				 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_published_date')"/>
+				 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_production_date')"/>
 				</td>
 
 			</tr>
 			
-			<tr>
+			<%-- <tr>
 				<td >상품 총 페이지수</td>
 				<td><input name="goods_total_page" type="text" size="40"  value="${goods.goods_total_page }"/></td>
 				<td>
 				 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_total_page"/>
 				</td>
 
-			</tr>
+			</tr> --%>
 			
-			<tr>
+			<%-- <tr>
 				<td >ISBN</td>
 				<td><input name="goods_isbn" type="text" size="40" value="${goods.goods_isbn }" /></td>
 				<td>
 				 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_isbn')"/>
 				</td>
 
-			</tr>
+			</tr> --%>
 			<tr>
 				<td >상품 배송비</td>
 				<td><input name="goods_delivery_price" type="text" size="40"  value="${goods.goods_delivery_price }"/></td>
@@ -324,7 +360,7 @@ function fn_modify_goods(goods_id, attribute){
 				<select name="goods_status">
 				  <option value="bestseller"  >베스트셀러</option>
 				  <option value="steadyseller" >스테디셀러</option>
-				  <option value="newbook" >신간</option>
+				  <option value="newproduct" >신간</option>
 				  <option value="on_sale" >판매중</option>
 				  <option value="buy_out"  selected>품절</option>
 				  <option value="out_of_print" >절판</option>
@@ -342,7 +378,7 @@ function fn_modify_goods(goods_id, attribute){
 			</tr>
 				</table>	
 			</DIV>
-			<DIV class="tab_content" id="tab2">
+		<%-- 	<DIV class="tab_content" id="tab2">
 				<h4>책목차</h4>
 				<table>	
 				<tr>
@@ -357,8 +393,8 @@ function fn_modify_goods(goods_id, attribute){
 					</td>
 				</tr>
 				</table>	
-			</DIV>
-			<DIV class="tab_content" id="tab3">
+			</DIV> --%>
+		<%-- 	<DIV class="tab_content" id="tab3">
 				<H4>상품 저자 소개</H4>
 				<P>
 				 <table>
@@ -375,7 +411,7 @@ function fn_modify_goods(goods_id, attribute){
 				   </tr>
 			   </table>
 				</P>
-			</DIV>
+			</DIV> --%>
 			<DIV class="tab_content" id="tab4">
 				<H4>상품소개</H4>
 				<P>
@@ -394,7 +430,7 @@ function fn_modify_goods(goods_id, attribute){
 			    </table>
 				</P>
 			</DIV>
-			<DIV class="tab_content" id="tab5">
+			<%-- <DIV class="tab_content" id="tab5">
 				<H4>출판사 상품 평가</H4>
 				<P>
 				<table>
@@ -410,8 +446,8 @@ function fn_modify_goods(goods_id, attribute){
 					</tr>
 			</table>
 				</P>
-			</DIV>
-			<DIV class="tab_content" id="tab6">
+			</DIV>--%>
+		<%-- 	<DIV class="tab_content" id="tab6">
 				<H4>추천사</H4>
 				 <table>
 					 <tr>
@@ -425,7 +461,7 @@ function fn_modify_goods(goods_id, attribute){
 						 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_recommendation')"/>
 						</td>
 					</tr>
-			    </table>
+			    </table> --%>
 			</DIV>
 			<DIV class="tab_content" id="tab7">
 			   <form id="FILE_FORM" method="post" enctype="multipart/form-data"  >

@@ -48,7 +48,6 @@ function search_order_history(search_period){
 	i_beginDate.value=beginDate;
 	i_endDate.name="endDate";
 	i_endDate.value=endDate;
-	alert(i_beginDate.value +"," + i_endDate.value);
 	
     formObj.appendChild(i_beginDate);
     formObj.appendChild(i_endDate);

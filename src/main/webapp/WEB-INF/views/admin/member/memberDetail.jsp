@@ -155,15 +155,6 @@ function fn_modify_member_info(member_id,mod_type){
 					break;
 				} 
 			}
-			
-			//alert("수정 년:"+value_y+","+value_m+","+value_d);
-			/* for(var i=0; member_birth_gn.length;i++){
-			 	if(member_birth_gn[i].checked){
-					value_gn=member_birth_gn[i].value;
-					break;
-				} 
-			} */
-			//alert("생년 양음년 "+value_gn);
 			value=+value_y+","+value_m+","+value_d;
 		}else if(mod_type=='tel'){
 			var tel1=frm_mod_member.tel1;

@@ -126,13 +126,13 @@
 					ROAD_ADDRESS=#{road_address},
 				</if>
 			      <if test=" jibun_address!='' and jibun_address!=null">
-			         JIBUN_ADDRESS=#{jibun_address}
+			         JIBUN_ADDRESS=#{jibun_address},
 			      </if>
 			      <if test=" detail_address!='' and detail_address!=null">
-			         DETAIL_ADDRESS=#{detail_address}
+			         DETAIL_ADDRESS=#{detail_address},
 			      </if>
 			      <if test=" delete_yn!='' and delete_yn!=null">
-			         DELETE_YN=#{delete_yn}
+			         DELETE_YN=#{delete_yn},
 			      </if>
 			</set>
 		WHERE 

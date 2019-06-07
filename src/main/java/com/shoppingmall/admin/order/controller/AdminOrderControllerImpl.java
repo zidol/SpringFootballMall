@@ -50,10 +50,6 @@ public class AdminOrderControllerImpl extends BaseController  implements AdminOr
 			endDate=tempDate[1];
 		}
 		
-//		dateMap.put("beginDate", beginDate);
-//		dateMap.put("endDate", endDate);
-		
-		
 		HashMap<String,Object> condMap=new HashMap<String,Object>();
 		if(section== null) {
 			section = "1";

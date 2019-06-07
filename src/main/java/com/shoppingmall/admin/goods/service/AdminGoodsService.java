@@ -9,6 +9,7 @@ import com.shoppingmall.order.vo.OrderVO;
 
 public interface AdminGoodsService {
 	public int  addNewGoods(Map newGoodsMap) throws Exception;
+	public void addNewGoodsDetail(Map newGoodsMap) throws Exception;
 	public List<GoodsVO> listNewGoods(Map condMap) throws Exception;
 	public Map goodsDetail(int goods_id) throws Exception;
 	public List goodsImageFile(int goods_id) throws Exception;

@@ -94,6 +94,12 @@ public class AdminGoodsDAOImpl  implements AdminGoodsDAO{
 		
 	}
 
+	@Override
+	public void insertNewGoodsDetail(Map newGoodsMap) throws DataAccessException {
+		// TODO Auto-generated method stub
+		sqlSession.insert("mapper.admin.goods.insertNewGoodsDetil",newGoodsMap);
+	}
+
 
 
 

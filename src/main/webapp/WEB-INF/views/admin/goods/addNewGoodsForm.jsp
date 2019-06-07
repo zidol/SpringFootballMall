@@ -29,11 +29,11 @@
 	<div class="tab_container" id="container">
 		<ul class="tabs">
 			<li><a href="#tab1">상품정보</a></li>
-			<li><a href="#tab2">상품목차</a></li>
-			<li><a href="#tab3">상품저자소개</a></li>
+			<!-- <li><a href="#tab2">상품목차</a></li> -->
+			<!-- <li><a href="#tab3">상품저자소개</a></li> -->
 			<li><a href="#tab4">상품소개</a></li>
-			<li><a href="#tab5">출판사 상품 평가</a></li>
-			<li><a href="#tab6">추천사</a></li>
+			<!-- <li><a href="#tab5">출판사 상품 평가</a></li> -->
+			<!-- <li><a href="#tab6">추천사</a></li> -->
 			<li><a href="#tab7">상품이미지</a></li>
 		</ul>
 		<div class="tab_container">
@@ -42,8 +42,11 @@
 			<tr >
 				<td width=200 >제품분류</td>
 				<td width=500><select name="goods_sort">
-						<option value="컴퓨터와 인터넷" selected>컴퓨터와 인터넷
-						<option value="디지털 기기">디지털 기기
+						<option value="footballshoes" selected>축구화
+						<option value="uniform_top">유니폼 상의
+						<option value="uniform_pants">유니폼 하의
+						<option value="train">트레이닝복
+						<option value="accessorie">악세사리
 					</select>
 				</td>
 			</tr>
@@ -57,8 +60,20 @@
 				<td><input name="goods_writer" type="text" size="40" /></td>
 			</tr> -->
 			<tr>
-				<td >제조</td>
+				<td >제조사</td>
 				<td><input name="goods_manufacturer" type="text" size="40" /></td>
+			</tr>
+			<tr>
+				<td>제품 사이즈</td>
+				<td><input name="goods_size" type="text" size="40" /></td>
+			</tr>
+			<tr>
+				<td >제픔 색상</td>
+				<td><input name="goods_color" type="text" size="40" /></td>
+			</tr>
+			<tr>
+				<td >재고 수량</td>
+				<td><input name="goods_qty" type="text" size="40" /></td>
 			</tr>
 			<tr>
 				<td >제품정가</td>
@@ -77,7 +92,7 @@
 			</tr>
 			
 			<tr>
-				<td >제품제조날</td>
+				<td >제품제조 날짜</td>
 				<td><input  name="goods_production_date"  type="date" size="40" /></td>
 			</tr>
 			
@@ -105,10 +120,9 @@
 				<select name="goods_status">
 				  <option value="bestseller"  >베스트셀러</option>
 				  <option value="steadyseller" >스테디셀러</option>
-				  <option value="newbook" selected >신간</option>
+				  <option value="newproduct" selected >신제품</option>
 				  <option value="on_sale" >판매중</option>
 				  <option value="buy_out" >품절</option>
-				  <option value="out_of_print" >절판</option>
 				</select>
 				</td>
 			</tr>
@@ -119,24 +133,24 @@
 			</tr>
 				</table>	
 			</div>
-			<div class="tab_content" id="tab2">
-			<!-- 	<H4>책목차</H4>
+			<!-- <div class="tab_content" id="tab2">
+				<H4>책목차</H4>
 				<table>	
 				 <tr>
 					<td >책목차</td>
 					<td><textarea  rows="100" cols="80" name="goods_contents_order"></textarea></td>
 				</tr>
-				</table> -->	
-			</div>
-			<div class="tab_content" id="tab3">
-				<!-- <H4>제품 저자 소개</H4>
+				</table>	
+			</div> -->
+			<!-- <div class="tab_content" id="tab3">
+				<H4>제품 저자 소개</H4>
 				 <table>
   				 <tr>
 					<td>제품 저자 소개</td>
 					<td><textarea  rows="100" cols="80" name="goods_writer_intro"></textarea></td>
 			    </tr>
-			   </table> -->
-			</div>
+			   </table>
+			</div> -->
 			<div class="tab_content" id="tab4">
 				<H4>제품소개</H4>
 				<table>
@@ -146,8 +160,8 @@
 				    </tr>
 			    </table>
 			</div>
-			<div class="tab_content" id="tab5">
-				<!-- <H4>출판사 제품 평가</H4>
+			<!-- <div class="tab_content" id="tab5">
+				<H4>출판사 제품 평가</H4>
 				<table>
 				 <tr>
 					<td>출판사 제품 평가</td>
@@ -155,15 +169,15 @@
 			    </tr>
 			</table> -->
 			</div>
-			<div class="tab_content" id="tab6">
-				<!-- <H4>추천사</H4>
+			<!-- <div class="tab_content" id="tab6">
+				<H4>추천사</H4>
 				 <table>
 					 <tr>
 					   <td>추천사</td>
 					    <td><textarea  rows="100" cols="80" name="goods_recommendation"></textarea></td>
 				    </tr>
-			    </table> -->
-			</div>
+			    </table>
+			</div> -->
 			<div class="tab_content" id="tab7">
 				<h4>상품이미지</h4>
 				<table >
@@ -181,7 +195,7 @@
 		</div>
 	</div>
 	<div class="clear"></div>
-<center>	
+<div align="center">	
 	 <table>
 	 <tr>
 			  <td align=center>
@@ -189,6 +203,6 @@
 			  </td>
 			</tr>
 	 </table>
-</center>	 
+</div>	 
 </div>
 </form>	 
