@@ -1,6 +1,7 @@
 package com.shoppingmall.admin.goods.controller;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
@@ -101,13 +102,17 @@ public class AdminGoodsControllerImpl extends BaseController implements AdminGoo
 		String imageFileName = null;
 		
 		Map newGoodsMap = new HashMap();
+		List detail = new ArrayList();
 		Enumeration enu = multipartRequest.getParameterNames();
+		Enumeration enuDetail = multipartRequest.getParameterNames();
+		String arr[] = null;
+		
 		while(enu.hasMoreElements()) {
 			String name = (String) enu.nextElement();
 			String value = multipartRequest.getParameter(name);
 			newGoodsMap.put(name, value);
 		}
-		
+		System.out.println(detail);
 		HttpSession session = multipartRequest.getSession();
 		MemberVO memberVO = (MemberVO)session.getAttribute("memberInfo");
 		System.out.println(memberVO.getMember_id());
@@ -126,6 +131,24 @@ public class AdminGoodsControllerImpl extends BaseController implements AdminGoo
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		try {
 			int goods_id = adminGoodsService.addNewGoods(newGoodsMap);
+			Map<String, List> paramMap = new HashMap<String, List>();
+			Map newGoodsDetailMap;
+			while(enuDetail.hasMoreElements()) {
+				String name = (String) enuDetail.nextElement();
+				if(name.equals("goods_size")) {
+					 arr = multipartRequest.getParameterValues(name);
+					for(int i=0; i < arr.length; i++) {
+						newGoodsDetailMap = new HashMap();
+						newGoodsDetailMap.put("goods_id", goods_id);
+						newGoodsDetailMap.put("goods_color", multipartRequest.getParameter("goods_color"));
+						newGoodsDetailMap.put("goods_qty", multipartRequest.getParameter("goods_qty"));
+						newGoodsDetailMap.put(name, arr[i]);
+						detail.add(newGoodsDetailMap);
+					}
+				}
+			}
+			paramMap.put("detailMap", detail);
+			adminGoodsService.addNewGoodsDetail(paramMap);
 			if(imageFileList != null && imageFileList.size() != 0) {
 				for(ImageFileVO imageFileVO : imageFileList) {
 					imageFileName = imageFileVO.getFileName();
@@ -157,22 +180,37 @@ public class AdminGoodsControllerImpl extends BaseController implements AdminGoo
 	}
 
 	@RequestMapping(value="/modifyGoodsForm.do", method= {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView modifyGoodsForm(@RequestParam("goods_id")int goods_id, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView modifyGoodsForm(@RequestParam("goods_id")int goods_id, @RequestParam("goods_size")int goods_size,HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
-		
-		Map goodsMap = adminGoodsService.goodsDetail(goods_id);
+		Map condMap = new HashMap<>();
+		condMap.put("goods_id", goods_id);
+		condMap.put("goods_size", goods_size);
+		Map goodsMap = adminGoodsService.goodsDetail(condMap);
 		mav.addObject("goodsMap", goodsMap);
 		return mav;
 	}
 
 	@RequestMapping(value="/modifyGoodsInfo.do", method= {RequestMethod.POST})
-	public ResponseEntity modifyGoodsInfo(@RequestParam("goods_id") String goods_id, @RequestParam("attribute")String attribute, 
+	public ResponseEntity modifyGoodsInfo(@RequestParam("goods_id") String goods_id,
+										@RequestParam(value="goods_size", required=false) String goods_size,
+										@RequestParam(value="goods_color", required=false) String goods_color,@RequestParam("attribute")String attribute, 
 			@RequestParam("value")String value, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		Map<String, String> goodsMap = new HashMap<String, String>();
 		goodsMap.put("goods_id", goods_id);
 		goodsMap.put(attribute, value);
-		adminGoodsService.modifyGoodsInfo(goodsMap);
+		System.out.println("goods_size: " + goods_size);
+		System.out.println("goods_color: " + goods_color);
+		System.out.println("goods_qty: " +attribute);
+		if(attribute.equals("goods_qty")) {
+			System.out.println("1");
+			goodsMap.put("goods_size", goods_size);
+			goodsMap.put("goods_color", goods_color);
+			adminGoodsService.modifyGoodsDetailInfo(goodsMap);
+		}else {
+			System.out.println("2");
+			adminGoodsService.modifyGoodsInfo(goodsMap);
+		}
 		
 		String message = null;
 		ResponseEntity resEntity = null;

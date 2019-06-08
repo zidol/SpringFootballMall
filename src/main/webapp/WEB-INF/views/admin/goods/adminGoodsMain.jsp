@@ -412,6 +412,9 @@ function fn_detail_search(){
 				<td>상품이름</td>
 				<td>제조사</td>
 				<td>상품가격</td>
+				<td>상품 색상</td>
+				<td>상품 사이</td>
+				<td>상품 수량</td>
 				<td>입고일자</td>
 				<td>제조일</td>
 			</tr>
@@ -430,7 +433,7 @@ function fn_detail_search(){
 				  <strong>${item.goods_id }</strong>
 				</TD>
 				<TD >
-				 <a href="${pageContext.request.contextPath}/admin/goods/modifyGoodsForm.do?goods_id=${item.goods_id}">
+				 <a href="${pageContext.request.contextPath}/admin/goods/modifyGoodsForm.do?goods_id=${item.goods_id}&goods_size=${item.goods_size}">
 				    <strong>${item.goods_title } </strong>
 				 </a> 
 				</TD>
@@ -439,6 +442,15 @@ function fn_detail_search(){
 				</TD>
 				<td>
 				  <strong>${item.goods_sales_price }</strong>
+				</td>
+				<td>
+				 <strong>${item.goods_color }</strong> 
+				</td>
+				<td>
+				 <strong>${item.goods_size }</strong> 
+				</td>
+				<td>
+				 <strong>${item.goods_qty }</strong> 
 				</td>
 				<td>
 				 <strong>${item.goods_enter_date }</strong> 

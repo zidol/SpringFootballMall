@@ -63,18 +63,10 @@
 				<td >제조사</td>
 				<td><input name="goods_manufacturer" type="text" size="40" /></td>
 			</tr>
-			<tr>
+		<!-- 	<tr>
 				<td>제품 사이즈</td>
 				<td><input name="goods_size" type="text" size="40" /></td>
-			</tr>
-			<tr>
-				<td >제픔 색상</td>
-				<td><input name="goods_color" type="text" size="40" /></td>
-			</tr>
-			<tr>
-				<td >재고 수량</td>
-				<td><input name="goods_qty" type="text" size="40" /></td>
-			</tr>
+			</tr> -->
 			<tr>
 				<td >제품정가</td>
 				<td><input name="goods_price" type="text" size="40" /></td>
@@ -95,7 +87,6 @@
 				<td >제품제조 날짜</td>
 				<td><input  name="goods_production_date"  type="date" size="40" /></td>
 			</tr>
-			
 		<!-- 	<tr>
 				<td >제품 총 페이지수</td>
 				<td><input name="goods_total_page" type="text" size="40" /></td>
@@ -124,6 +115,23 @@
 				  <option value="on_sale" >판매중</option>
 				  <option value="buy_out" >품절</option>
 				</select>
+				</td>
+			</tr>
+			<tr>
+				<td >제픔 색상</td>
+				<td><input name="goods_color" type="text" size="40" /></td>
+			</tr>
+			<tr>
+				<td >재고 수량</td>
+				<td><input name="goods_qty" type="text" size="40" /></td>
+			</tr>
+			<tr>
+				<td >사이즈</td>
+				<td>
+					<input  name="goods_size"  type="checkbox" value="250"/>250
+					<input  name="goods_size"  type="checkbox" value="260"/>260
+					<input  name="goods_size"  type="checkbox" value="270"/>270
+					<input  name="goods_size"  type="checkbox" value="280"/>280		
 				</td>
 			</tr>
 			<tr>

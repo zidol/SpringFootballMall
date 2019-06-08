@@ -39,9 +39,9 @@ public class AdminGoodsDAOImpl  implements AdminGoodsDAO{
 	}
 	
 	@Override
-	public GoodsVO selectGoodsDetail(int goods_id) throws DataAccessException{
+	public GoodsVO selectGoodsDetail(Map condMap) throws DataAccessException{
 		GoodsVO goodsBean = new GoodsVO();
-		goodsBean=(GoodsVO)sqlSession.selectOne("mapper.admin.goods.selectGoodsDetail",goods_id);
+		goodsBean=(GoodsVO)sqlSession.selectOne("mapper.admin.goods.selectGoodsDetail",condMap);
 		return goodsBean;
 	}
 	
@@ -95,9 +95,15 @@ public class AdminGoodsDAOImpl  implements AdminGoodsDAO{
 	}
 
 	@Override
-	public void insertNewGoodsDetail(Map newGoodsMap) throws DataAccessException {
+	public void insertNewGoodsDetail(Map detailMap) throws DataAccessException {
 		// TODO Auto-generated method stub
-		sqlSession.insert("mapper.admin.goods.insertNewGoodsDetil",newGoodsMap);
+		sqlSession.insert("mapper.admin.goods.insertNewGoodsDetil",detailMap);
+	}
+
+	@Override
+	public void updateGoodsDetailInfo(Map goodsMap) throws DataAccessException {
+		// TODO Auto-generated method stub
+		sqlSession.update("mapper.admin.goods.updateGoodsDetailInfo",goodsMap);
 	}
 
 

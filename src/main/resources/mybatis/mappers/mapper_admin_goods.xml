@@ -17,6 +17,9 @@
 		<result property="goods_status" column="goods_status" />
 		<result property="goods_intro" column="goods_intro" />
 		<result property="goods_fileName" column="filename" />
+		<result property="goods_size" column="goods_size" />
+		<result property="goods_color" column="goods_color" />
+		<result property="goods_qty" column="goods_qty" />
 	</resultMap>
 	<!-- ImageFileVO, GOODS_IMAGE Table 매핑-->
 	<resultMap type="imageFileVO" id="imageResult">
@@ -98,17 +101,22 @@
     	]]>
 	</insert>
 	
-	<insert id="insertNewGoodsDetil" parameterType="java.util.HashMap"  >
-	    <![CDATA[
-			 INSERT INTO GOODS_DETAIL(GOODS_ID
-						  	  ,GOODS_SIZE
-						  	  ,GOODS_COLOR
-						  	  ,GOODS_QTY)
-				        VALUES(#{goods_id}
-						  	  ,#{goods_size}
-						  	  ,#{goods_color}
-						  	  ,#{goods_qty})
-    	]]>
+	<insert id="insertNewGoodsDetil" parameterType="java.util.HashMap" >
+	    <!-- <![CDATA[ -->
+	<foreach collection="detailMap" item="item" index="index"  open="INSERT ALL " separator=" " close="SELECT * FROM DUAL" >
+	     INTO GOODS_DETAIL(GOODS_ID
+					  	  ,GOODS_SIZE
+					  	  ,GOODS_COLOR
+					  	  ,GOODS_QTY)
+						VALUES
+				        	  (
+				        	   #{item.goods_id, jdbcType=NUMERIC}
+						  	  ,#{item.goods_size, jdbcType=VARCHAR}
+						  	  ,#{item.goods_color, jdbcType=VARCHAR}
+						  	  ,#{item.goods_qty, jdbcType=NUMERIC}
+						  	  )
+				       </foreach>
+    	<!-- ]]> -->
 	</insert>
 	
 	<!-- GOODS_IMAGE Table 상품이미지 등록 , 이미지 별로 시퀀스 생성 -->
@@ -134,24 +142,28 @@
 		
 			SELECT * FROM (SELECT ROWNUM AS RECNUM
 					     , t.*
-					  FROM (SELECT GOODS_ID
-							     , GOODS_TITLE
-							     , GOODS_MANUFACTURER
-							     , GOODS_SALES_PRICE
-							     , TO_CHAR(GOODS_ENTER_DATE, 'YYYY-MM-DD') AS GOODS_ENTER_DATE
-							     , TO_CHAR(GOODS_PRODUCTION_DATE, 'YYYY-MM-DD') AS GOODS_PRODUCTION_DATE
-							  FROM GOODS
-							 WHERE TO_CHAR(GOODS_ENTER_DATE, 'YYYY-MM-DD') BETWEEN #{beginDate} and #{endDate}
+					  FROM (SELECT a.GOODS_ID
+							     , a.GOODS_TITLE
+							     , a.GOODS_MANUFACTURER
+							     , a.GOODS_SALES_PRICE
+							     , TO_CHAR(a.GOODS_ENTER_DATE, 'YYYY-MM-DD') AS GOODS_ENTER_DATE
+							     , TO_CHAR(a.GOODS_PRODUCTION_DATE, 'YYYY-MM-DD') AS GOODS_PRODUCTION_DATE
+							     , b.goods_size
+							     , b.goods_qty
+							     , b.goods_color
+							  FROM GOODS a, goods_detail b
+							  where a.goods_id = b.goods_id
+								and TO_CHAR(a.GOODS_ENTER_DATE, 'YYYY-MM-DD') BETWEEN #{beginDate} and #{endDate}
 							 <if test="search_type=='goods_title'">
-			                          AND GOODS_TITLE LIKE '%'||#{search_word}||'%'
+			                          AND a.GOODS_TITLE LIKE '%'||#{search_word}||'%'
 			                       </if>
 			                       <if test="search_type=='goods_id'">
-			                          AND GOODS_ID LIKE '%'||#{search_word}||'%'
+			                          AND a.GOODS_ID LIKE '%'||#{search_word}||'%'
 			                       </if>
 			                       <if test="search_type=='goods_publisher'">
-			                          AND GOODS_MANUFACTURER LIKE '%'||#{search_word}||'%'
+			                          AND a.GOODS_MANUFACTURER LIKE '%'||#{search_word}||'%'
 			                       </if>
-						  ORDER BY GOODS_ENTER_DATE DESC)t)
+						  ORDER BY a.GOODS_ENTER_DATE DESC)t)
 					WHERE RECNUM BETWEEN (#{section}-1)*100 + (#{pageNum}-1)*10+1 AND (#{section}-1)*100 + (#{pageNum})*10 	
 		
 	</select>
@@ -179,15 +191,23 @@
 	</select>
 	
 	<!-- 상품 상세 정보확인 -->
-	<select id="selectGoodsDetail" resultMap="goodsResult" parameterType="int">
+	<select id="selectGoodsDetail" resultMap="goodsResult" parameterType="java.util.HashMap">
 		<![CDATA[
 			SELECT G.*
 			     , TO_CHAR(G.GOODS_PRODUCTION_DATE, 'YYYY-MM-DD') AS GOODS_PRODUCTION_DATE
 			     , I.FILENAME
-			  FROM GOODS G, GOODS_IMAGE I
+			     , D.GOODS_SIZE
+                 , D.GOODS_COLOR
+                 , D.GOODS_QTY
+                 , D.goods_size
+			     , D.goods_qty
+			     , D.goods_color
+			  FROM GOODS G, GOODS_IMAGE I, GOODS_DETAIL D
 			 WHERE G.GOODS_ID=I.GOODS_ID
+			   AND G.GOODS_ID=D.GOODS_ID
 			   AND I.FILETYPE='main_image'
 			   AND G.GOODS_ID=#{goods_id}
+			   and D.goods_size=#{goods_size}
 		  ORDER BY G.GOODS_ID 
 		]]>
 	</select>
@@ -240,6 +260,18 @@
 				</if>
 			</set>
 		WHERE GOODS_ID = #{goods_id}
+	</update>
+	
+	<update id="updateGoodsDetailInfo" parameterType="java.util.HashMap">
+			UPDATE GOODS_DETAIL
+			<set>
+				<if test=" goods_qty!='' and goods_qty!=null">
+					GOODS_QTY=#{goods_qty},
+				</if>
+			</set>
+		WHERE GOODS_ID = #{goods_id}
+		  AND goods_size = #{goods_size}
+		  and goods_color = #{goods_color}
 	</update>
 	
 	<!-- 상품이미지 테이블의 상품 이미지 수정 -->

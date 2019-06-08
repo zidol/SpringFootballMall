@@ -25,16 +25,15 @@ public class AdminGoodsServiceImpl implements AdminGoodsService {
 	@Override
 	public int addNewGoods(Map newGoodsMap) throws Exception{
 		int goods_id = adminGoodsDAO.insertNewGoods(newGoodsMap);
-		System.out.println("goods_id : " + goods_id);
-		String goods_size = (String) newGoodsMap.get("goods_size");
-		String goods_color = (String) newGoodsMap.get("goods_color");
-		String goods_qty = (String)newGoodsMap.get("goods_qty");
-		Map goodsDetailMap = new HashMap() ;
-		goodsDetailMap.put("goods_id", goods_id);
-		goodsDetailMap.put("goods_size", goods_size);
-		goodsDetailMap.put("goods_color", goods_color);
-		goodsDetailMap.put("goods_qty", goods_qty);
-		adminGoodsDAO.insertNewGoodsDetail(goodsDetailMap);
+//		System.out.println("goods_id : " + goods_id);
+//		String goods_size = (String) newGoodsMap.get("goods_size");
+//		String goods_color = (String) newGoodsMap.get("goods_color");
+//		String goods_qty = (String)newGoodsMap.get("goods_qty");
+//		Map goodsDetailMap = new HashMap() ;
+//		goodsDetailMap.put("goods_id", goods_id);
+//		goodsDetailMap.put("goods_size", goods_size);
+//		goodsDetailMap.put("goods_color", goods_color);
+//		goodsDetailMap.put("goods_qty", goods_qty);
 		ArrayList<ImageFileVO> imageFileList = (ArrayList)newGoodsMap.get("imageFileList");
 		for(ImageFileVO imageFileVO : imageFileList) {
 			imageFileVO.setGoods_id(goods_id);
@@ -48,10 +47,10 @@ public class AdminGoodsServiceImpl implements AdminGoodsService {
 		return adminGoodsDAO.selectNewGoodsList(condMap);
 	}
 	@Override
-	public Map goodsDetail(int goods_id) throws Exception {
+	public Map goodsDetail(Map condMap) throws Exception {
 		Map goodsMap = new HashMap();
-		GoodsVO goodsVO=adminGoodsDAO.selectGoodsDetail(goods_id);
-		List imageFileList =adminGoodsDAO.selectGoodsImageFileList(goods_id);
+		GoodsVO goodsVO=adminGoodsDAO.selectGoodsDetail(condMap);
+		List imageFileList =adminGoodsDAO.selectGoodsImageFileList((int)condMap.get("goods_id"));
 		goodsMap.put("goods", goodsVO);
 		goodsMap.put("imageFileList", imageFileList);
 		return goodsMap;
@@ -65,7 +64,6 @@ public class AdminGoodsServiceImpl implements AdminGoodsService {
 	@Override
 	public void modifyGoodsInfo(Map goodsMap) throws Exception{
 		adminGoodsDAO.updateGoodsInfo(goodsMap);
-		
 	}	
 	@Override
 	public void modifyGoodsImage(List<ImageFileVO> imageFileList) throws Exception{
@@ -92,9 +90,15 @@ public class AdminGoodsServiceImpl implements AdminGoodsService {
 	}
 
 	@Override
-	public void addNewGoodsDetail(Map newGoodsMap) throws Exception {
+	public void addNewGoodsDetail(Map detailMap) throws Exception {
 		// TODO Auto-generated method stub
-		adminGoodsDAO.insertNewGoodsDetail(newGoodsMap);
+		adminGoodsDAO.insertNewGoodsDetail(detailMap);
+	}
+
+	@Override
+	public void modifyGoodsDetailInfo(Map goodsMap) throws Exception {
+		// TODO Auto-generated method stub
+		adminGoodsDAO.updateGoodsDetailInfo(goodsMap);
 	}
 	
 

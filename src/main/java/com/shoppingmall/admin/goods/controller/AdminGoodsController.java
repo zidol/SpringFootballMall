@@ -14,6 +14,8 @@ public interface AdminGoodsController {
 	public ModelAndView adminGoodsMain(@RequestParam Map<String, String> dateMap,HttpServletRequest request, HttpServletResponse response)  throws Exception;
 	public ResponseEntity addNewGoods(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)  throws Exception;
 	public ResponseEntity modifyGoodsInfo( @RequestParam("goods_id") String goods_id,
+								 @RequestParam("goods_size") String goods_size,
+								 @RequestParam("goods_color") String goods_color,
                                  @RequestParam("mod_type") String mod_type,
                                  @RequestParam("value") String value,
 			                     HttpServletRequest request, HttpServletResponse response)  throws Exception;

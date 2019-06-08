@@ -26,7 +26,7 @@ function init(){
 </c:when>
 </c:choose>
 <script type="text/javascript">
-function fn_modify_goods(goods_id, attribute){
+function fn_modify_goods(goods_id, attribute, goods_size, goods_color){
 	var frm_mod_goods=document.frm_mod_goods;
 	var value="";
 	if(attribute=='goods_sort'){
@@ -55,24 +55,28 @@ function fn_modify_goods(goods_id, attribute){
 		value=frm_mod_goods.goods_delivery_date.value;
 	}else if(attribute=='goods_status'){
 		value=frm_mod_goods.goods_status.value;
-	}else if(attribute=='goods_contents_order'){
-		value=frm_mod_goods.goods_contents_order.value;
-	}else if(attribute=='goods_writer_intro'){
-		value=frm_mod_goods.goods_writer_intro.value;
+	}else if(attribute=='goods_size'){
+		value=frm_mod_goods.goods_size.value;
+	}else if(attribute=='goods_color'){
+		value=frm_mod_goods.goods_color.value;
+	}else if(attribute=='goods_qty'){
+		value=frm_mod_goods.goods_qty.value;
 	}else if(attribute=='goods_intro'){
 		value=frm_mod_goods.goods_intro.value;
-	}else if(attribute=='publisher_comment'){
-		value=frm_mod_goods.publisher_comment.value;
-	}else if(attribute=='recommendation'){
-		value=frm_mod_goods.recommendation.value;
 	}
-
+	console.log(goods_id);
+	console.log(goods_size);
+	console.log(goods_color);
+	console.log(attribute);
+	console.log(value);
 	$.ajax({
 		type : "post",
 		async : false, //false인 경우 동기식으로 처리한다.
 		url : "${contextPath}/admin/goods/modifyGoodsInfo.do",
 		data : {
 			goods_id:goods_id,
+			goods_size:goods_size,
+			goods_color:goods_color,
 			attribute:attribute,
 			value:value
 		},
@@ -85,7 +89,7 @@ function fn_modify_goods(goods_id, attribute){
 			
 		},
 		error : function(data, textStatus) {
-			alert("에러가 발생했습니다."+data);
+			alert("에러가 발생했습니다."+data.goods_id);
 		},
 		complete : function(data, textStatus) {
 			//alert("작업을완료 했습니다");
@@ -279,6 +283,28 @@ function fn_modify_goods(goods_id, attribute){
 				</td>
 				
 			</tr>
+			<tr>
+				<td>제품 사이즈</td>
+				<td><input name="goods_size" type="text" size="40" value="${goods.goods_size }"/></td>
+				<td>
+				  <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }')"/>
+				</td>
+			</tr>
+			<tr>
+				<td >제픔 색상</td>
+				<td><input name="goods_color" type="text" size="40" value="${goods.goods_color }"/></td>
+				<td>
+				  <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_color')"/>
+				</td>
+			</tr>
+			<tr>
+				<td >재고 수량</td>
+				<td><input name="goods_qty" type="text" size="40" value="${goods.goods_qty }"/></td>
+				<td>
+				  <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_qty','${goods.goods_size }','${goods.goods_color }','${goods.goods_size }')"/>
+				</td>
+			</tr>
+			
 			<tr>
 				<td >상품정가</td>
 				<td><input name="goods_price" type="text" size="40" value="${goods.goods_price }" /></td>
