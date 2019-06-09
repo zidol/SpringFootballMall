@@ -57,6 +57,16 @@
 		order by g.goods_id
 		]]>
 	</select>
+	<!-- 상품 상세 보기 (1건) - 조인(goods, goods_image) -->
+	<select id="selectGoodsSize" parameterType="String" resultMap="goodsResult">
+		<![CDATA[
+		SELECT D.GOODS_SIZE
+		  FROM GOODS G, GOODS_DETAIL D
+		 WHERE G.GOODS_ID = D.GOODS_ID
+		   AND G.GOODS_ID = #{goods_id}
+	  ORDER BY G.GOODS_ID
+		]]>
+	</select>
 	
 	<!-- 상품 이미지 보기 (1건) -->
 	<select id="selectGoodsDetailImage" parameterType="String" resultMap="imageResult">

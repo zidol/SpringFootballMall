@@ -48,5 +48,10 @@ public class GoodsDAOImpl implements GoodsDAO{
 		List<ImageFileVO> imageList = (ArrayList)sqlSession.selectList("mapper.goods.selectGoodsDetailImage",goods_id);
 		return imageList;
 	}
+	@Override
+	public List<String> selectGoodsSize(String goods_id) throws DataAccessException {
+		ArrayList list = (ArrayList)sqlSession.selectList("mapper.goods.selectGoodsSize",goods_id);
+		return list;
+	}
 	
 }

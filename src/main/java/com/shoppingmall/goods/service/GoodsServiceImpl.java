@@ -58,4 +58,10 @@ public class GoodsServiceImpl implements GoodsService{
 		return goodsList;
 	}
 
+	@Override
+	public List<String> goodsSize(String _goods_id) throws Exception {
+		List goodsSize = goodsDAO.selectGoodsSize(_goods_id);
+		return goodsSize;
+	}
+
 }

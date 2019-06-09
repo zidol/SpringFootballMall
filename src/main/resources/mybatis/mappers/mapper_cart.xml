@@ -76,10 +76,12 @@
 		<![CDATA[
 		INSERT INTO CART(CART_ID
 		               , GOODS_ID
-		               , MEMBER_ID)
+		               , MEMBER_ID
+		               , CART_GOODS_SIZE)
 	 	         VALUES(#{cart_id}
 	 	              , #{goods_id}
-	 	              , #{member_id})
+	 	              , #{member_id}
+	 	              , #{cart_goods_size})
 		]]>
 	</insert>
 

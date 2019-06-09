@@ -859,9 +859,11 @@ function fn_process_pay_order(){
 	<br>
 	<center>
 		<br>
-		<br> <a href="javascript:fn_show_order_detail();"> 
-		<img width="125" alt="" src="${contextPath}/resources/image/btn_gulje.jpg">
-		</a> <a href="${contextPath}/main/main.do"> 
+		<br> 
+		<a href="javascript:fn_show_order_detail();"> 
+			<img width="125" alt="" src="${contextPath}/resources/image/btn_gulje.jpg">
+		</a> 
+		<a href="${contextPath}/main/main.do"> 
 		   <img width="75" alt="" src="${contextPath}/resources/image/btn_shoping_continue.jpg">
 		</a>
 	

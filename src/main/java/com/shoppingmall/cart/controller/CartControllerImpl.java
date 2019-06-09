@@ -44,7 +44,9 @@ public class CartControllerImpl extends BaseController implements CartController
 	}
 
 	@RequestMapping(value="/addGoodsInCart.do", method=RequestMethod.POST, produces="application/text; charset=utf8")
-	public @ResponseBody String addGoodsInCart(@RequestParam("goods_id")int goods_id, @RequestParam("order_goods_qty")int order_goods_qty,
+	public @ResponseBody String addGoodsInCart(@RequestParam("goods_id")int goods_id, 
+											   @RequestParam("order_goods_qty")int order_goods_qty,
+											   @RequestParam("order_goods_size")String order_goods_size,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		HttpSession session = request.getSession();
@@ -54,6 +56,7 @@ public class CartControllerImpl extends BaseController implements CartController
 		cartVO.setMember_id(member_id);
 		cartVO.setGoods_id(goods_id);
 		cartVO.setCart_goods_qty(order_goods_qty);
+		cartVO.setCart_goods_size(order_goods_size);
 		boolean isAreadyExisted = cartService.findCartGoods(cartVO);
 		System.out.println("2");
 		System.out.println("isAreadyExisted:" + isAreadyExisted);

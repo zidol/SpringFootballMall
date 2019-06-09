@@ -11,6 +11,7 @@ public class CartVO {
 	private String member_id;
 	private int cart_goods_qty;
 	private Date reg_date;
+	private String cart_goods_size;
 
 	public int getCart_id() {
 		return cart_id;
@@ -50,5 +51,13 @@ public class CartVO {
 
 	public void setReg_date(Date reg_date) {
 		this.reg_date = reg_date;
+	}
+
+	public String getCart_goods_size() {
+		return cart_goods_size;
+	}
+
+	public void setCart_goods_size(String cart_goods_size) {
+		this.cart_goods_size = cart_goods_size;
 	}
 }

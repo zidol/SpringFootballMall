@@ -194,6 +194,7 @@ function fn_order_all_cart_goods(){
 					<td colspan=2 class="fixed">상품명</td>
 					<td>정가</td>
 					<td>판매가</td>
+					<td>사이즈</td>
 					<td>수량</td>
 					<td>합계</td>
 					<td>주문</td>
@@ -209,11 +210,11 @@ function fn_order_all_cart_goods(){
 					<c:otherwise>
 						<c:forEach var="item" items="${myGoodsList }" varStatus="cnt">
 							<tr>
+								<c:set var="cart_goods_size" value="${myCartList[cnt.count-1].cart_goods_size}" />
 								<c:set var="cart_goods_qty" value="${myCartList[cnt.count-1].cart_goods_qty}" />
 								<c:set var="cart_id" value="${myCartList[cnt.count-1].cart_id}" />
 								<td>
-									<input type="checkbox" name="checked_goods" checked value="${item.goods_id }"
-									onClick="calcGoodsPrice(${item.goods_sales_price },this)">
+									<input type="checkbox" name="checked_goods" checked value="${item.goods_id }" onClick="calcGoodsPrice(${item.goods_sales_price },this)">
 								</td>
 								<td class="goods_image"><a
 									href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">
@@ -229,7 +230,11 @@ function fn_order_all_cart_goods(){
 									<span>${item.goods_price }원</span>
 								</td>
 								<td>
-									<strong> <fmt:formatNumber value="${item.goods_sales_price*0.9}" type="number" var="discounted_price" /> ${discounted_price}원(10%할인)</strong></td>
+									<strong> <fmt:formatNumber value="${item.goods_sales_price*0.9}" type="number" var="discounted_price" /> ${discounted_price}원(10%할인)</strong>
+								</td>
+								<td class="size">
+									<span>${cart_goods_size }</span>
+								</td>
 								<td>
 									<input type="text" id="cart_goods_qty" name="cart_goods_qty" size=3 value="${cart_goods_qty}">
 									<br>

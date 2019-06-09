@@ -1,6 +1,7 @@
 package com.shoppingmall.goods.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -34,8 +35,12 @@ public class GoodsControllerImpl extends BaseController implements GoodsControll
 		String viewName=(String)request.getAttribute("viewName");
 		HttpSession session=request.getSession();
 		Map goodsMap=goodsService.goodsDetail(goods_id);
+		Map<String, List> goodsSizeMap = new HashMap<String, List>();
+		goodsSizeMap.put("goodsSize", goodsService.goodsSize(goods_id));
+		
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("goodsMap", goodsMap);
+		mav.addObject("goodsSizeMap", goodsSizeMap);
 		GoodsVO goodsVO=(GoodsVO)goodsMap.get("goodsVO");
 		addGoodsInQuick(goods_id,goodsVO,session);
 		return mav;

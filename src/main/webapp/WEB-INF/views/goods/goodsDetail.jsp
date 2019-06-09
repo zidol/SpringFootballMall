@@ -7,6 +7,7 @@
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 <c:set var="goods"  value="${goodsMap.goodsVO}"  />
 <c:set var="imageList"  value="${goodsMap.imageList }"  />
+<c:set var="goodsSize"  value="${goodsSizeMap.goodsSize }"  />
  <%
      //치환 변수 선언합니다.
       pageContext.setAttribute("crcn", "\r\n"); //개행문자
@@ -44,14 +45,17 @@
 
 	function add_cart(goods_id) {
 		var order_goods_qty = document.getElementById("order_goods_qty").value;
+		var order_goods_size = document.getElementById("order_goods_size").value;
 		console.log(order_goods_qty);
+		console.log(order_goods_size);
 		$.ajax({
 			type : "post",
 			async : false, //false인 경우 동기식으로 처리한다.
 			url : "${contextPath}/cart/addGoodsInCart.do",
 			data : {
 				goods_id:goods_id,
-				order_goods_qty: order_goods_qty
+				order_goods_qty: order_goods_qty,
+				order_goods_size:order_goods_size
 				
 			},
 			success : function(data, textStatus) {
@@ -209,6 +213,16 @@ function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
 					<option value="4">4</option>
 					<option value="5">5</option>
 			     </select>
+					 </td>
+				</tr>
+				<tr>
+					<td class="fixed">사이즈</td>
+					<td class="fixed">
+					     <select style="width: 60px;" id="order_goods_size">
+					      	<c:forEach items="${goodsSize }" var="list">
+								<option value="${list.goods_size}">${list.goods_size}</option>						
+							</c:forEach>
+					     </select>
 					 </td>
 				</tr>
 			</tbody>
