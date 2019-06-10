@@ -79,13 +79,15 @@ function fn_cancel_order(order_id){
 									<td>
 										<span>${item.pay_order_time }</span>
 									</td>
-									<td align="left"><strong> <c:forEach var="item2"
-												items="${myOrderList}" varStatus="j">
+									<td align="left">
+										<strong> 
+											<c:forEach var="item2" items="${myOrderList}" varStatus="j">
 												<c:if test="${item.order_id ==item2.order_id}">
-													<a href="${contextPath}/goods/goodsDetail.do?goods_id=${item2.goods_id }">${item2.goods_title }/${item2.order_goods_qty }개</a>
+													<a href="${contextPath}/goods/goodsDetail.do?goods_id=${item2.goods_id }">${item2.goods_title }/${item2.order_goods_qty }개/${item2.order_goods_size }mm</a>
 													<br>
 												</c:if>
-											</c:forEach></strong>
+											</c:forEach>
+										</strong>
 									</td>
 									<td>
 										<c:choose>

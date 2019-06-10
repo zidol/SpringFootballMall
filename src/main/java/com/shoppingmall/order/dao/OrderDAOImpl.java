@@ -2,6 +2,7 @@ package com.shoppingmall.order.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +53,17 @@ public class OrderDAOImpl implements OrderDAO{
 			OrderVO orderVO = (OrderVO) myOrderList.get(i);
 			sqlSession.delete("mapper.order.deleteGoodsFromCart", orderVO);
 		}
+	}
+	
+	@Override
+	public List selectGoodsList() throws DataAccessException {
+		List goodsList=(List)sqlSession.selectList("mapper.order.selectGoodsList");
+		return goodsList;
+	}
+
+	@Override
+	public void decreaseGoodsQty(Map orderMap) throws DataAccessException {
+		sqlSession.update("mapper.order.decreaseGoodsQty",orderMap);
 	}
 
 }

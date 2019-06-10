@@ -177,8 +177,8 @@ function fn_order_all_cart_goods(){
 				order_goods_size=cart_goods_size[i].value;
 				cart_goods_qty[i].value="";
 				cart_goods_qty[i].value=order_goods_id+":"+order_goods_qty+":"+order_goods_size;
-				//alert(select_goods_qty[i].value);
-				console.log(cart_goods_qty[i].value);
+				alert(cart_goods_qty[i].value);
+				//console.log(cart_goods_qty[i].value);
 			}
 		}	
 	}else{

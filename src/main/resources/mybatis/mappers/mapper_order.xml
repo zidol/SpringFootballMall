@@ -80,7 +80,8 @@
 			                  ,CARD_COM_NAME
 			                  ,CARD_PAY_MONTH
 			                  ,ORDERER_HP
-			                  ,PAY_ORDERER_HP)
+			                  ,PAY_ORDERER_HP
+			                  ,ORDER_GOODS_SIZE)
 				      VALUES(#{order_seq_num},
 				             #{order_id},
 						     #{member_id},
@@ -105,7 +106,8 @@
 			                 #{card_com_name},
 			                 #{card_pay_month},
 			                 #{orderer_hp},
-			                 #{pay_orderer_hp})
+			                 #{pay_orderer_hp},
+			                 #{order_goods_size})
     	]]>
 	</insert>
 
@@ -131,4 +133,19 @@
 	   WHERE GOODS_ID=#{goods_id}
 	</delete>
 	
+	<select id="selectGoodsList" resultType="int" >
+	    <![CDATA[
+			SELECT GOODS_ID 
+			  FROM GOODS
+		]]>
+	</select>
+	
+	<update id="decreaseGoodsQty" parameterType="java.util.HashMap">
+		<![CDATA[
+		UPDATE GOODS_DETAIL
+		   SET GOODS_QTY= GOODS_QTY - #{order_goods_qty}
+		 WHERE GOODS_ID=#{goods_id}
+		   AND GOODS_SIZE=#{order_goods_size}
+		]]>
+	</update>
 </mapper>

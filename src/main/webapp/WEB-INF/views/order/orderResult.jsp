@@ -12,6 +12,7 @@
 			     <td>주문번호 </td>
 				<td colspan=2 class="fixed">주문상품명</td>
 				<td>수량</td>
+				<td>사이즈</td>
 				<td>주문금액</td>
 				<td>배송비</td>
 				<td>예상적립금</td>
@@ -30,6 +31,9 @@
 					     <A href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">${item.goods_title }</A>
 					  </h2>
 					</TD>
+					<td>
+					  <h2>${item.order_goods_size }mm<h2>
+					</td>
 					<td>
 					  <h2>${item.order_goods_qty }개<h2>
 					</td>
