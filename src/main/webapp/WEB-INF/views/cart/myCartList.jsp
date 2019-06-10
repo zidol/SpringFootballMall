@@ -113,25 +113,31 @@ function delete_cart_goods(cart_id){
 }
 
 function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
-	var total_price,final_total_price,_goods_qty;
+	var total_price,final_total_price,_goods_qty,_goods_size;
 	var cart_goods_qty=document.getElementById("cart_goods_qty");
+	var cart_goods_size=document.getElementById("cart_goods_size");
 	
 	_order_goods_qty=cart_goods_qty.value; //장바구니에 담긴 개수 만큼 주문한다.
+
+	_order_goods_size=cart_goods_size.value; //장바구니에 담긴 개수 만큼 주문한다.
 	var formObj=document.createElement("form");
 	var i_goods_id = document.createElement("input"); 
     var i_goods_title = document.createElement("input");
     var i_goods_sales_price=document.createElement("input");
     var i_fileName=document.createElement("input");
     var i_order_goods_qty=document.createElement("input");
+    var i_order_goods_size=document.createElement("input");
     
     i_goods_id.name="goods_id";
     i_goods_title.name="goods_title";
     i_goods_sales_price.name="goods_sales_price";
     i_fileName.name="goods_fileName";
     i_order_goods_qty.name="order_goods_qty";
+    i_order_goods_size.name="order_goods_size";
     
     i_goods_id.value=goods_id;
     i_order_goods_qty.value=_order_goods_qty;
+    i_order_goods_size.value=_order_goods_size;
     i_goods_title.value=goods_title;
     i_goods_sales_price.value=goods_sales_price;
     i_fileName.value=fileName;
@@ -141,6 +147,7 @@ function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
     formObj.appendChild(i_goods_sales_price);
     formObj.appendChild(i_fileName);
     formObj.appendChild(i_order_goods_qty);
+    formObj.appendChild(i_order_goods_size);
 
     document.body.appendChild(formObj); 
     formObj.method="post";
@@ -152,8 +159,10 @@ function fn_order_all_cart_goods(){
 //	alert("모두 주문하기");
 	var order_goods_qty;
 	var order_goods_id;
+	var order_goods_size;
 	var objForm=document.frm_order_all_cart;
 	var cart_goods_qty=objForm.cart_goods_qty;
+	var cart_goods_size=objForm.cart_goods_size;
 	var h_order_each_goods_qty=objForm.h_order_each_goods_qty;
 	var checked_goods=objForm.checked_goods;
 	var length=checked_goods.length;
@@ -165,8 +174,9 @@ function fn_order_all_cart_goods(){
 			if(checked_goods[i].checked==true){
 				order_goods_id=checked_goods[i].value;
 				order_goods_qty=cart_goods_qty[i].value;
+				order_goods_size=cart_goods_size[i].value;
 				cart_goods_qty[i].value="";
-				cart_goods_qty[i].value=order_goods_id+":"+order_goods_qty;
+				cart_goods_qty[i].value=order_goods_id+":"+order_goods_qty+":"+order_goods_size;
 				//alert(select_goods_qty[i].value);
 				console.log(cart_goods_qty[i].value);
 			}
@@ -174,8 +184,10 @@ function fn_order_all_cart_goods(){
 	}else{
 		order_goods_id=checked_goods.value;
 		order_goods_qty=cart_goods_qty.value;
-		cart_goods_qty.value=order_goods_id+":"+order_goods_qty;
+		order_goods_size=cart_goods_size.value;
+		cart_goods_qty.value=order_goods_id+":"+order_goods_qty+":"+order_goods_size;
 		//alert(select_goods_qty.value);
+		alert(cart_goods_qty.value);
 	}
 		
  	objForm.method="post";
@@ -234,6 +246,7 @@ function fn_order_all_cart_goods(){
 								</td>
 								<td class="size">
 									<span>${cart_goods_size }</span>
+									<input type="hidden" id="cart_goods_size" name="cart_goods_size" value="${cart_goods_size }"/>
 								</td>
 								<td>
 									<input type="text" id="cart_goods_qty" name="cart_goods_qty" size=3 value="${cart_goods_qty}">

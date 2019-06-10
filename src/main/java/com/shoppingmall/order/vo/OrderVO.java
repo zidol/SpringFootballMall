@@ -33,6 +33,7 @@ public class OrderVO {
 	private String delivery_state;
 	private Date pay_order_time;
 	private String orderer_hp;
+	private String order_goods_size;
 
 	// orders 테이블에 없는 필드 추가
 	private int total_goods_price;		// 전체 장바구니 금액(배송비 포함X)
@@ -288,6 +289,15 @@ public class OrderVO {
 		this.goods_qty = goods_qty;
 	}
 
+
+	public String getOrder_goods_size() {
+		return order_goods_size;
+	}
+
+	public void setOrder_goods_size(String order_goods_size) {
+		this.order_goods_size = order_goods_size;
+	}
+
 	@Override
 	public String toString() {
 		return "OrderVO [order_seq_num=" + order_seq_num + ", order_id=" + order_id + ", member_id=" + member_id
@@ -300,8 +310,9 @@ public class OrderVO {
 				+ ", delivery_message=" + delivery_message + ", gift_wrapping=" + gift_wrapping + ", pay_method="
 				+ pay_method + ", card_com_name=" + card_com_name + ", card_pay_month=" + card_pay_month
 				+ ", pay_orderer_hp=" + pay_orderer_hp + ", delivery_state=" + delivery_state + ", pay_order_time="
-				+ pay_order_time + ", orderer_hp=" + orderer_hp + ", total_goods_price=" + total_goods_price
-				+ ", cart_goods_qty=" + cart_goods_qty + ", final_total_price=" + final_total_price + ", goods_qty="
-				+ goods_qty + "]";
+				+ pay_order_time + ", orderer_hp=" + orderer_hp + ", order_goods_size=" + order_goods_size
+				+ ", total_goods_price=" + total_goods_price + ", cart_goods_qty=" + cart_goods_qty
+				+ ", final_total_price=" + final_total_price + ", goods_qty=" + goods_qty + "]";
 	}
+	
 }

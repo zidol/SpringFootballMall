@@ -94,6 +94,7 @@ public class OrderControllerImpl extends BaseController implements OrderControll
 					_orderVO.setGoods_sales_price(goods_sales_price);
 					_orderVO.setGoods_fileName(goods_fileName);
 					_orderVO.setOrder_goods_qty(Integer.parseInt(cart_goods[1]));
+					_orderVO.setOrder_goods_size(cart_goods[2]);
 					myOrderList.add(_orderVO);
 					break;
 				}

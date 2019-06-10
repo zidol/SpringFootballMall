@@ -222,8 +222,9 @@ function imagePopup(type) {
 var goods_id="";
 var goods_title="";
 var goods_fileName="";
+var order_goods_size="";
 
-var order_goods_qty
+var order_goods_qty;
 var each_goods_price;
 var total_order_goods_price;
 var total_order_goods_qty;
@@ -257,7 +258,10 @@ function fn_show_order_detail(){
 	var h_goods_title=frm.h_goods_title;
 	var h_goods_fileName=frm.h_goods_fileName;
 	var r_delivery_method  =  frm.delivery_method;
+	var h_order_goods_size=frm.h_order_goods_size;
 	var h_order_goods_qty=document.getElementById("h_order_goods_qty");
+	console.log(h_order_goods_size)
+	console.log(h_order_goods_qty)
 	var h_total_order_goods_qty=document.getElementById("h_total_order_goods_qty");
 	var h_total_sales_price=document.getElementById("h_total_sales_price");
 	var h_final_total_Price=document.getElementById("h_final_total_Price");
@@ -275,13 +279,22 @@ function fn_show_order_detail(){
 	}
 	
 	if(h_goods_title.length <2 ||h_goods_title.length==null){
-		goods_title+=h_goods_title.value;
+		goods_title+=h_goods_title.value+"("+h_order_goods_size.value+")";
 	}else{
 		for(var i=0; i<h_goods_title.length;i++){
-			goods_title+=h_goods_title[i].value+"<br>";
+			goods_title+=h_goods_title[i].value+"("+h_order_goods_size[i].value+")"+"<br>";
 			
 		}	
 	}
+	
+	/* if(h_order_goods_size.length <2 ||h_order_goods_size.length==null){
+		order_goods_size+=h_order_goods_size.value;
+	}else{
+		for(var i=0; i<h_goods_title.length;i++){
+			order_goods_size+= h_order_goods_size[i].value+"<br>";
+			
+		}	
+	} */
 	
 	
 	if(h_goods_fileName.length <2 ||h_goods_fileName.length==null){
@@ -508,6 +521,7 @@ function fn_process_pay_order(){
 			<tr style="background: #33ff00">
 				<td colspan=2 class="fixed">주문상품명</td>
 				<td>수량</td>
+				<td>사이즈</td>
 				<td>주문금액</td>
 				<td>배송비</td>
 				<td>예상적립금</td>
@@ -532,6 +546,10 @@ function fn_process_pay_order(){
 					<td>
 					  <h2>${item.order_goods_qty }개</h2>
 					    <input   type="hidden" id="h_order_goods_qty" name="h_order_goods_qty" value="${item.order_goods_qty}" />
+					</td>
+					<td>
+					  <h2>${item.order_goods_size }mm</h2>
+					    <input   type="hidden" id="h_order_goods_size" name="h_order_goods_size" value="${item.order_goods_size}" />
 					</td>
 					<td><h2>${item.goods_sales_price}원 (10% 할인)</h2></td>
 					<td><h2>0원</h2></td>
