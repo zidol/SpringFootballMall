@@ -123,6 +123,16 @@ public class GoodsVO {
 	public void setGoods_qty(int goods_qty) {
 		this.goods_qty = goods_qty;
 	}
+	@Override
+	public String toString() {
+		return "GoodsVO [goods_id=" + goods_id + ", goods_sort=" + goods_sort + ", goods_title=" + goods_title
+				+ ", goods_manufacturer=" + goods_manufacturer + ", goods_price=" + goods_price + ", goods_sales_price="
+				+ goods_sales_price + ", goods_point=" + goods_point + ", goods_production_date="
+				+ goods_production_date + ", goods_delivery_price=" + goods_delivery_price + ", goods_delivery_date="
+				+ goods_delivery_date + ", goods_status=" + goods_status + ", goods_intro=" + goods_intro
+				+ ", goods_enter_date=" + goods_enter_date + ", goods_fileName=" + goods_fileName + ", goods_size="
+				+ goods_size + ", goods_color=" + goods_color + ", goods_qty=" + goods_qty + "]";
+	}
 
 	
 }

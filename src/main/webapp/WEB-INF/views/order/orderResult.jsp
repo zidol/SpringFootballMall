@@ -32,7 +32,7 @@
 					  </h2>
 					</TD>
 					<td>
-					  <h2>${item.order_goods_size }mm<h2>
+					  <h2>${item.order_goods_size }<h2>
 					</td>
 					<td>
 					  <h2>${item.order_goods_qty }개<h2>

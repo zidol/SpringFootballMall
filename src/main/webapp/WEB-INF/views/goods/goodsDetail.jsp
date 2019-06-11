@@ -202,7 +202,7 @@ function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
 				<tr>
 					<td class="fixed">배송안내</td>
 					<td class="fixed"><strong>[당일배송]</strong> 당일배송 서비스 시작!<br> <strong>[휴일배송]</strong>
-						휴일에도 배송받는 Bookshop</TD>
+						휴일에도 배송받는 쇼핑몰</TD>
 				</tr>
 				<tr>
 					<td class="fixed">도착예정일</td>
@@ -243,16 +243,11 @@ function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
 	<!-- 내용 들어 가는 곳 -->
 	<div id="container">
 		<ul class="tabs">
-			<li><a href="#tab1">책소개</a></li>
-			<li><a href="#tab2">저자소개</a></li>
-			<li><a href="#tab3">책목차</a></li>
-			<li><a href="#tab4">출판사서평</a></li>
-			<li><a href="#tab5">추천사</a></li>
-			<li><a href="#tab6">리뷰</a></li>
+			<li><a href="#tab1">상품 소개</a></li>
 		</ul>
 		<div class="tab_container">
 			<div class="tab_content" id="tab1">
-				<h4>책소개</h4>
+				<h4>상품 소개</h4>
 				<p>${fn:replace(goods.goods_intro,crcn,br)}</p>
 				<c:forEach var="image" items="${imageList }">
 					<img 

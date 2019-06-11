@@ -10,7 +10,7 @@
 <div id="ad_main_banner">
 	<ul class="bjqs">	 	
 	  <li><img width="775" height="300" src="${contextPath}/resources/image/main_plan_bn01.jpg"></li>
-		<li><img width="775" height="200" src="https://www.soccermall.kr/images/main2013/b_main2014_plan_524.jpg"></li>
+		<li><img width="775" height="150" src="${contextPath}/resources/image/main_bn.png">></li>
 		<li><img width="775" height="300" src="https://www.soccermall.kr/images/main2013/b_main2014_plan_520.jpg"></li> 
 	</ul>
 </div>

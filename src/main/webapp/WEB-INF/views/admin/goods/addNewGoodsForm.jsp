@@ -43,6 +43,7 @@
 				<td width=200 >제품분류</td>
 				<td width=500><select name="goods_sort">
 						<option value="footballshoes" selected>축구화
+						<option value="sweater">크루탑
 						<option value="uniform_top">유니폼 상의
 						<option value="uniform_pants">유니폼 하의
 						<option value="train">트레이닝복
@@ -131,7 +132,11 @@
 					<input  name="goods_size"  type="checkbox" value="250"/>250
 					<input  name="goods_size"  type="checkbox" value="260"/>260
 					<input  name="goods_size"  type="checkbox" value="270"/>270
-					<input  name="goods_size"  type="checkbox" value="280"/>280		
+					<input  name="goods_size"  type="checkbox" value="280"/>280
+					<input  name="goods_size"  type="checkbox" value="S"/>S
+					<input  name="goods_size"  type="checkbox" value="M"/>M
+					<input  name="goods_size"  type="checkbox" value="L"/>L
+					<input  name="goods_size"  type="checkbox" value="XL"/>XL				
 				</td>
 			</tr>
 			<tr>

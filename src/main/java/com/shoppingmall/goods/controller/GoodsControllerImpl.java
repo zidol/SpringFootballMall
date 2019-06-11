@@ -42,6 +42,7 @@ public class GoodsControllerImpl extends BaseController implements GoodsControll
 		mav.addObject("goodsMap", goodsMap);
 		mav.addObject("goodsSizeMap", goodsSizeMap);
 		GoodsVO goodsVO=(GoodsVO)goodsMap.get("goodsVO");
+		System.out.println(goodsVO.toString());
 		addGoodsInQuick(goods_id,goodsVO,session);
 		return mav;
 	}

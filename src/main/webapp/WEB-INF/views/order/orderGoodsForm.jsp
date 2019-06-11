@@ -547,7 +547,7 @@ function fn_process_pay_order(){
 				    <input   type="hidden" id="h_order_goods_qty" name="h_order_goods_qty" value="${item.order_goods_qty}" />
 				</td>
 				<td>
-				  <h2>${item.order_goods_size }mm</h2>
+				  <h2>${item.order_goods_size }</h2>
 				    <input   type="hidden" id="h_order_goods_size" name="h_order_goods_size" value="${item.order_goods_size}" />
 				</td>
 				<td><h2>${item.goods_sales_price}원 (10% 할인)</h2></td>
