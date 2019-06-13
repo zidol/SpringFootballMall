@@ -45,10 +45,12 @@
 	<li>
 		<h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 축구용품</h3>
 		<ul>
-			<li><a href="${contextPath}/goods/goodsList.do">축구화</a></li>
-			<li><a href="#">유니폼</a></li>
-			<li><a href="#">트레이닝복</a></li>
-			<li><a href="#">악세사리</a></li>
+			<li><a href="${contextPath}/goods/goodsList.do?goods_sort=footballshoes">축구화</a></li>
+			<li><a href="${contextPath}/goods/goodsList.do?goods_sort=uniform_top">유니폼 상의</a></li>
+			<li><a href="${contextPath}/goods/goodsList.do?goods_sort=uniform_bottom">유니폼 하의</a></li>
+			<li><a href="${contextPath}/goods/goodsList.do?goods_sort=sweater">크루탑</a></li>
+			<li><a href="${contextPath}/goods/goodsList.do?goods_sort=train">트레이닝 복</a></li>
+			<li><a href="${contextPath}/goods/goodsList.do?goods_sort=accessorie">악세사리</a></li>
 		</ul>
 	</li>
 <!-- 	<li>

@@ -144,8 +144,7 @@ function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
 </head>
 <body>
 	<hgroup>
-		<h1>컴퓨터와 인터넷</h1>
-		<h2>국내외 도서 &gt; 컴퓨터와 인터넷 &gt; 웹 개발</h2>
+		<h1>축구용품</h1>
 		<h3>${goods.goods_title }</h3>
 		<h4>${goods.goods_manufacturer} &nbsp;</h4>
 	</hgroup>
@@ -187,14 +186,6 @@ function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
 					   <c:out value="${arr[0]}" />
 					</td>
 				</tr>
-				<%-- <tr>
-					<td class="fixed">페이지 수</td>
-					<td class="fixed">${goods.goods_total_page}쪽</td>
-				</tr> --%>
-				<%-- <tr class="dot_line">
-					<td class="fixed">ISBN</td>
-					<td class="fixed">${goods.goods_isbn}</td>
-				</tr> --%>
 				<tr>
 					<td class="fixed">배송료</td>
 					<td class="fixed"><strong>무료</strong></td>
@@ -244,6 +235,7 @@ function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
 	<div id="container">
 		<ul class="tabs">
 			<li><a href="#tab1">상품 소개</a></li>
+			<li><a href="#tab2">교환/반품/배송</a></li>
 		</ul>
 		<div class="tab_container">
 			<div class="tab_content" id="tab1">
@@ -254,13 +246,34 @@ function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
 						src="${contextPath}/download.do?goods_id=${goods.goods_id}&fileName=${image.fileName}">
 				</c:forEach>
 			</div>
-			<%-- <div class="tab_content" id="tab2">
-				<h4>저자소개</h4>
-				<p>
-				<div class="writer">저자 : ${goods.goods_writer}</div>
-				 <p>${fn:replace(goods.goods_writer_intro,crcn,br) }</p> 
+			<div class="tab_content" id="tab2">
+				<h4>교환/반품/배송</h4>
+				<div class="detail_delivery">
+					<ul>
+						<img src="${contextPath}/resources/image/t_product_detail_04_1.gif" width="50" height="17" alt="배송">
+						<li class="bullet_circle_gray">배송기간은 평균 <span class="BlSt">결제 완료 후 1~3일 정도 소요</span>되며, 제품에 따라 약간의 차이가 생길 수 있습니다.</li>
+						<li class="bullet_circle_gray"><span class="BuSt">배송비는 건당  2,500원의 배송료가 부과됩니다.</span> <span class="ReSt">(제주도,도서 지방은 별도 요금 부과)</span></li>
+						<li class="bullet_circle_gray">배송 업체는 <span class="BlSt">“CJ대한통운” 이며, 평일 오후 5시까지 발송 업무를 처리</span> 합니다.토요일,일요일,공휴일은 발송처리가 되지 않습니다.</li>
+						<li class="delivery_line"><img src="${contextPath}/resources/image/t_product_detail_04_1_1.gif" width="133" height="17" alt="배송비 부담 책임"></li>
+						<li class="bullet_circle_gray">제품하자에 의한 교환/반품 배송비는 쇼핑몰에서 전액 부담합니다.</li>
+						<li class="bullet_circle_gray">제품하자가 아닌 교환/반품의 경우 배송비는 전액 고객님께서 부담하셔야 합니다.<br><strong>(교환시 왕복배송비: 6,000원 , 반품시 편도배송비 : 3,000원)</strong></li>
+						<li class="delivery_line"><img src="${contextPath}/resources/image/t_product_detail_04_2.gif" width="87" height="17" alt="교환/반품"></li>
+						<li class="delivery_gap"><img src="${contextPath}/resources/image/t_product_detail_04_05.gif" width="78" height="14" alt="교환/반품 방법"></li>
+						<li class="bullet_circle_gray">교환/반품 요청서를 동봉하고 제품, 사은품 및 정품박스가 손상되지 않도록 잘 포장한뒤 반드시 CJ대한통운 택배접수(☎ 1588-1255, 편의점 택배 제외)후 택배기사 방문시 해당제품을 보내주시면 됩니다.</li>
+						<li class="bullet_circle_gray"><strong>교환시 왕복배송비 6,000원 / 반품시 편도배송비 3,000원을 입금</strong>하시면 교환,반품이 진행됩니다.(제주도,도서 지방은 추가 요금 발생) </li>
+						<li class="bullet_circle_gray">타택배 이용시 추가비용이 발생합니다. </li>
+						<li class="bullet_circle_gray">편도 배송비를 초과하는 일부 대형제품의 경우 배송비가 추가됩니다.</li>
+						<li class="delivery_gap"><img src="${contextPath}/resources/image/t_product_detail_04_.gif" width="141" height="14" alt="반품 및 교환이 불가능한 경우"></li>
+						<li class="bullet_circle_gray">제품을 사용하거나 훼손된 흔적이 있는 경우</li>
+						<li class="bullet_circle_gray">상품 수령일로부터 7일이 경과한 경우 </li>
+						<li class="bullet_circle_gray">제품에 붙어있는 텍(tag)을 떼어 내거나 정품포장(박스, 비닐)이 훼손된 경우</li>
+						<li class="bullet_circle_gray">마킹을 추가로 하신 제품의 경우 </li>
+						<li class="bullet_circle_gray">주문 생산 제품 및 제품 상세설명에 교환/반품 불가능이라 명시된 제품의 경우</li>
+						<li class="box"><img src="${contextPath}/resources/image/t_product_detail_04_4.jpg" width="870" height="551" alt="정품박스 훼손시 교환/반품불가"></li>
+					</ul>
+				</div>
 				
-			</div> --%>
+			</div>
 			<%-- <div class="tab_content" id="tab3">
 				<h4>책목차</h4>
 				<p>${fn:replace(goods.goods_contents_order,crcn,br)}</p> 

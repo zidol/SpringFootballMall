@@ -19,7 +19,8 @@ public class GoodsServiceImpl implements GoodsService{
 	
 	@Autowired
 	GoodsDAO goodsDAO;
-
+	
+	//메인화면 처리를 위한 비지니스영역
 	@Override
 	public Map<String, List<GoodsVO>> listGoods() throws Exception {
 		Map<String, List<GoodsVO>> goodsMap = new HashMap<String, List<GoodsVO>>();
@@ -34,7 +35,8 @@ public class GoodsServiceImpl implements GoodsService{
 		
 		return goodsMap;
 	}
-
+	
+	//상품 클릭시 상세 정보를 처리하는 메서드
 	@Override
 	public Map goodsDetail(String _goods_id) throws Exception {
 		Map goodsMap = new HashMap();
@@ -46,6 +48,7 @@ public class GoodsServiceImpl implements GoodsService{
 		return goodsMap;
 	}
 
+	//검색어 창에보여줄 목록을 처리하는 메서드
 	@Override
 	public List<String> keywordSearch(String keyword) throws Exception {
 		List<String> list = goodsDAO.selectKeywordSearch(keyword);
@@ -62,6 +65,12 @@ public class GoodsServiceImpl implements GoodsService{
 	public List<String> goodsSize(String _goods_id) throws Exception {
 		List goodsSize = goodsDAO.selectGoodsSize(_goods_id);
 		return goodsSize;
+	}
+
+	@Override
+	public List<GoodsVO> byTypeGoods(String goods_sort) throws Exception {
+		List<GoodsVO> goodsList = goodsDAO.selectBySort(goods_sort);
+		return goodsList;
 	}
 
 }

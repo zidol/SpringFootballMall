@@ -17,11 +17,11 @@
 </head>
 <body>
 	<hgroup>
-		<h1>컴퓨터와 인터넷</h1>
-		<h2>오늘의 책</h2>
+		<h1>축구 용품</h1>
+		<h2>오늘의 상품</h2>
 	</hgroup>
 	<section id="new_book">
-		<h3>새로나온 책</h3>
+		<h3>새로나온 상품</h3>
 		<div id="left_scroll">
 			<a href='javascript:slide("left");'><img src="${contextPath}/resources/image/left.gif"></a>
 		</div>
@@ -42,13 +42,13 @@
 						<a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id}">
 						<img width="75" alt="" src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.goods_fileName}">
 						</a>
-						<div class="sort">[컴퓨터 인터넷]</div>
+						<div class="sort">[축구화]</div>
 						<div class="title">
 							<a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">
 							  ${item.goods_title}
 							</a>
 						</div>
-						<div class="writer">${item.goods_writer} | ${item.goods_publisher}</div>
+						<div class="writer">${item.goods_manufacturer}</div>
 						<div class="price">
 							<span>
 							  <fmt:formatNumber  value="${item.goods_price}" type="number" var="goods_price" />
@@ -95,10 +95,9 @@
 						<h2>
 							<a href="${contextPath}/goods/goodsDetail.do?goods_id=${item.goods_id }">${item.goods_title }</a>
 						</h2>
-						<c:set var="goods_pub_date" value="${item.goods_published_date }" />
+						<c:set var="goods_pub_date" value="${item.goods_production_date }" />
 					   <c:set var="arr" value="${fn:split(goods_pub_date,' ')}" />
-						<div class="writer_press"  >${item.goods_writer }저
-							|${item.goods_publisher }|<c:out value="${arr[0]}" />
+						<div class="writer_press"  >${item.goods_manufacturer }<c:out value="${arr[0]}" />
 						</div>
 					</td>
 					<td class="price"><span>${item.goods_price }원</span><br>

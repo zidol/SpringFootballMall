@@ -25,6 +25,7 @@ public class MainController extends BaseController{
 	@Autowired
 	private GoodsService goodsService;
 	
+	//메인화면에서 전체 상품분류 별로 나누어 보여줌(인기상품, 새로운 상품 출시, 스테디셀러) 
 	@RequestMapping(value="/main/main.do", method= {RequestMethod.POST, RequestMethod.GET})
 	public ModelAndView main(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("controller1");

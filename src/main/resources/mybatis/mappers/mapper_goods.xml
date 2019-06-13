@@ -57,7 +57,7 @@
 		order by g.goods_id
 		]]>
 	</select>
-	<!-- 상품 상세 보기 (1건) - 조인(goods, goods_image) -->
+	<!-- 상품별 사이즈 목록 -->
 	<select id="selectGoodsSize" parameterType="String" resultMap="goodsResult">
 		<![CDATA[
 		SELECT D.GOODS_SIZE
@@ -98,4 +98,17 @@
 		]]>
 	</select>
 	
+	<!-- 상품 종류별 목록  -->
+	<select id="selectBySort" parameterType="String" resultMap="goodsResult">
+		<![CDATA[
+		select t.* from (
+			select g.*, i.filename 
+			from goods g, goods_image i
+			where g.goods_id = i.goods_id
+			and i.filetype = 'main_image'
+			and g.goods_sort = #{goods_sort}
+			order by g.goods_enter_date desc) t
+		where rowNum < 16
+		]]>
+	</select>
 </mapper>
