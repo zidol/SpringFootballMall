@@ -180,7 +180,7 @@ public class AdminGoodsControllerImpl extends BaseController implements AdminGoo
 	}
 
 	@RequestMapping(value="/modifyGoodsForm.do", method= {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView modifyGoodsForm(@RequestParam("goods_id")int goods_id, @RequestParam("goods_size")int goods_size,HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView modifyGoodsForm(@RequestParam("goods_id")int goods_id, @RequestParam("goods_size")String goods_size,HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 		Map condMap = new HashMap<>();

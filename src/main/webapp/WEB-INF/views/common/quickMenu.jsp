@@ -69,7 +69,7 @@ function goodsDetail(){
 	
 }
 </script>  
- 
+
 <body>    
     <div id="sticky" >
 	<ul>
@@ -100,7 +100,7 @@ function goodsDetail(){
 		         <c:choose>
 		           <c:when test="${itemNum.count==1 }">
 			      <a href="javascript:goodsDetail();">
-			  	         <img width="75" height="95" id="img_sticky"  
+			  	         <img width="60" height="95" id="img_sticky"  
 			                 src="${contextPath}/thumbnails.do?goods_id=${item.goods_id}&fileName=${item.goods_fileName}">
 			      </a>
 			        <input type="hidden"  name="h_goods_id" value="${item.goods_id}" />

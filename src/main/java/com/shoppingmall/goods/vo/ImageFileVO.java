@@ -9,6 +9,7 @@ public class ImageFileVO {
 	private String reg_id;
 	private String fileType;
 	private Date reg_date;
+	
 	public int getImage_id() {
 		return image_id;
 	}

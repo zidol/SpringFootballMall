@@ -21,28 +21,18 @@ function result() {
 </head>
 <body>
 	<H3>회원 로그인 창</H3>
-	<div id="detail_table">
-	<form action="${contextPath}/member/login.do" method="post">
-		<TABLE>
-			<TBODY>
-				<TR class="dot_line">
-					<TD class="fixed_join">아이디</TD>
-					<TD><input name="member_id" type="text" size="20" /></TD>
-				</TR>
-				<TR class="solid_line">
-					<TD class="fixed_join">비밀번호</TD>
-					<TD><input name="member_pw" type="password" size="20" /></TD>
-				</TR>
-			</TBODY>
-		</TABLE>
-		<br><br>
-		<INPUT type="submit" value="로그인"> 
-		<INPUT type="reset" value="초기화">
-		<br><br>
-		   <a href="#">아이디 찾기</a>  | 
-		   <a href="#">비밀번호 찾기</a> | 
-		   <a href="${contextPath}/member/memberForm.do">회원가입</a>    | 
-		   <a href="#">고객 센터</a>
-	</form>		
+	<form class="form-signin" action="${contextPath}/member/login.do" method="post">
+        <label for="inputEmail" class="sr-only">아이디</label>
+        <input name="member_id" type="text" size="20" class="form-control" placeholder="account" required autofocus/>
+        <label for="inputPassword" class="sr-only">비밀번호</label>
+        <input name="member_pw" type="password" size="20" class="form-control" placeholder="Password" required/>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div>
+        <input class="btn btn-lg btn-primary"  type="submit" value="로그인">
+        <a href="${contextPath}/member/memberForm.do">회원가입</a> 
+      </form>
 </body>
 </html>

@@ -56,7 +56,6 @@ public class GoodsControllerImpl extends BaseController implements GoodsControll
 			                                  HttpServletResponse response) throws Exception{
 		response.setContentType("text/html;charset=utf-8");
 		response.setCharacterEncoding("utf-8");
-		//System.out.println(keyword);
 		if(keyword == null || keyword.equals(""))
 		   return null ;
 	
@@ -67,7 +66,6 @@ public class GoodsControllerImpl extends BaseController implements GoodsControll
 		jsonObject.put("keyword", keywordList);
 		 		
 	    String jsonInfo = jsonObject.toString();
-	   // System.out.println(jsonInfo);
 	    return jsonInfo ;
 	}
 	
@@ -112,22 +110,18 @@ public class GoodsControllerImpl extends BaseController implements GoodsControll
 	}
 	
 	@RequestMapping(value="/goodsList.do", method= {RequestMethod.POST, RequestMethod.GET})
-	public ModelAndView byTypeGoods(@RequestParam String goods_sort, 
-									HttpServletRequest request, 
+	public ModelAndView byTypeGoods(@RequestParam String goods_sort, HttpServletRequest request, 
 									HttpServletResponse response) throws Exception {
-		System.out.println("controller1");
 		HttpSession session;
 		ModelAndView mav = new ModelAndView();
 		String viewName= (String)request.getAttribute("viewName");
 		mav.setViewName(viewName);
-		System.out.println("controller2");
 		session = request.getSession();
 		session.setAttribute("side_menu", "user");
 		System.out.println("controller3");
 		List<GoodsVO>goodsList = goodsService.byTypeGoods(goods_sort);
 		mav.addObject("goods_sort", goods_sort);
 		mav.addObject("goodsList", goodsList);
-		System.out.println(mav);
 		return mav;
 	}
 }
