@@ -12,7 +12,7 @@
 <body>
 <footer class="footer">
 <div class="container">
-<div class="text-muted" style="padding-left:200px">
+<div class="text-muted" style="padding-left:200px; background-color: black;">
 	 &nbsp; <br>
 	 (주)풋볼몰<br>
 	 대표이사: 안지혁   <br>

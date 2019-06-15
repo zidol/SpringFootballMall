@@ -22,18 +22,9 @@ public class AdminGoodsServiceImpl implements AdminGoodsService {
 	@Autowired
 	AdminGoodsDAO adminGoodsDAO;
 	
-	@Override
+	@Override// 새상품 등록
 	public int addNewGoods(Map newGoodsMap) throws Exception{
 		int goods_id = adminGoodsDAO.insertNewGoods(newGoodsMap);
-//		System.out.println("goods_id : " + goods_id);
-//		String goods_size = (String) newGoodsMap.get("goods_size");
-//		String goods_color = (String) newGoodsMap.get("goods_color");
-//		String goods_qty = (String)newGoodsMap.get("goods_qty");
-//		Map goodsDetailMap = new HashMap() ;
-//		goodsDetailMap.put("goods_id", goods_id);
-//		goodsDetailMap.put("goods_size", goods_size);
-//		goodsDetailMap.put("goods_color", goods_color);
-//		goodsDetailMap.put("goods_qty", goods_qty);
 		ArrayList<ImageFileVO> imageFileList = (ArrayList)newGoodsMap.get("imageFileList");
 		for(ImageFileVO imageFileVO : imageFileList) {
 			imageFileVO.setGoods_id(goods_id);
@@ -42,11 +33,11 @@ public class AdminGoodsServiceImpl implements AdminGoodsService {
 		return goods_id;
 	}
 	
-	@Override
+	@Override//등록한 상품 조회
 	public List<GoodsVO> listNewGoods(Map condMap) throws Exception{
 		return adminGoodsDAO.selectNewGoodsList(condMap);
 	}
-	@Override
+	@Override //상품수정페이지에 나오는 품목 상세 조회
 	public Map goodsDetail(Map condMap) throws Exception {
 		Map goodsMap = new HashMap();
 		GoodsVO goodsVO=adminGoodsDAO.selectGoodsDetail(condMap);
@@ -55,22 +46,22 @@ public class AdminGoodsServiceImpl implements AdminGoodsService {
 		goodsMap.put("imageFileList", imageFileList);
 		return goodsMap;
 	}
-	@Override
+	@Override //싱품 이미지 조회
 	public List goodsImageFile(int goods_id) throws Exception{
 		List imageList =adminGoodsDAO.selectGoodsImageFileList(goods_id);
 		return imageList;
 	}
 	
-	@Override
+	@Override// 상품 정보 수정
 	public void modifyGoodsInfo(Map goodsMap) throws Exception{
 		adminGoodsDAO.updateGoodsInfo(goodsMap);
 	}	
-	@Override
+	@Override//상품이미지 수정
 	public void modifyGoodsImage(List<ImageFileVO> imageFileList) throws Exception{
 		adminGoodsDAO.updateGoodsImage(imageFileList); 
 	}
 	
-	@Override
+	@Override//주문 상품 조회
 	public List<OrderVO> listOrderGoods(Map condMap) throws Exception{
 		return adminGoodsDAO.selectOrderGoodsList(condMap);
 	}
@@ -79,25 +70,23 @@ public class AdminGoodsServiceImpl implements AdminGoodsService {
 		adminGoodsDAO.updateOrderGoods(orderMap);
 	}
 	
-	@Override
+	@Override//상품이미지 삭제
 	public void removeGoodsImage(int image_id) throws Exception{
 		adminGoodsDAO.deleteGoodsImage(image_id);
 	}
 	
-	@Override
+	@Override//이미지 추가
 	public void addNewGoodsImage(List imageFileList) throws Exception{
 		adminGoodsDAO.insertGoodsImageFile(imageFileList);
 	}
 
-	@Override
+	@Override//상품이미지 조회
 	public void addNewGoodsDetail(Map detailMap) throws Exception {
-		// TODO Auto-generated method stub
 		adminGoodsDAO.insertNewGoodsDetail(detailMap);
 	}
 
-	@Override
+	@Override//goods_detail테이블 수정(상품 사이즈)
 	public void modifyGoodsDetailInfo(Map goodsMap) throws Exception {
-		// TODO Auto-generated method stub
 		adminGoodsDAO.updateGoodsDetailInfo(goodsMap);
 	}
 	

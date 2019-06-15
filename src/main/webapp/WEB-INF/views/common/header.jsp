@@ -65,6 +65,25 @@
 	}
 
 </script>
+
+<style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="jumbotron.css" rel="stylesheet">
 <head>
 <!-- 합쳐지고 최소화된 최신 CSS -->
 <link href="${contextPath}/resources/bootstrap-3.3.2-dist/css/bootstrap.min.css" rel="stylesheet">
@@ -134,7 +153,9 @@
 		     <li></li>
 			   <li><a href="${contextPath}/mypage/myPageMain.do">마이페이지</a></li>
 			   <li><a href="${contextPath}/cart/myCartList.do">장바구니</a></li>
-			   <li><a href="#">주문배송</a></li>
+		<c:if test="${isLogOn==true and memberInfo.member_id =='admin' }">  
+	   	   <li class="no_line"><a href="${contextPath}/admin/goods/adminGoodsMain.do">관리자</a></li>
+	    </c:if>
 			 </c:when>
 			 <c:otherwise>
 			   

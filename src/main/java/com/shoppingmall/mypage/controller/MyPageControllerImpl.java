@@ -54,7 +54,9 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 	
 	@Override
 	@RequestMapping(value="/myOrderDetail.do" ,method = RequestMethod.GET)
-	public ModelAndView myOrderDetail(@RequestParam("order_id")  String order_id,HttpServletRequest request, HttpServletResponse response)  throws Exception {
+	public ModelAndView myOrderDetail(@RequestParam("order_id")  String order_id, 
+									 HttpServletRequest request, 
+									 HttpServletResponse response)  throws Exception {
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 		HttpSession session=request.getSession();
@@ -69,7 +71,8 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 	@Override
 	@RequestMapping(value="/listMyOrderHistory.do" ,method = RequestMethod.GET)
 	public ModelAndView listMyOrderHistory(@RequestParam Map<String, String> dateMap,
-			                               HttpServletRequest request, HttpServletResponse response)  throws Exception {
+			                               HttpServletRequest request, 
+			                               HttpServletResponse response)  throws Exception {
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 		HttpSession session=request.getSession();
@@ -77,14 +80,21 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 		String  member_id=memberVO.getMember_id();
 		
 		String fixedSearchPeriod = dateMap.get("fixedSearchPeriod");
-		String beginDate=null,endDate=null;
+		String search_type = dateMap.get("search_type");
+		String search_word = dateMap.get("search_word");
+		String beginDate=dateMap.get("beginDate");
+		String endDate=dateMap.get("endDate");
 		
-		String [] tempDate=calcSearchPeriod(fixedSearchPeriod).split(",");
-		beginDate=tempDate[0];
-		endDate=tempDate[1];
+		if(beginDate == null) {
+			String [] tempDate=calcSearchPeriod(fixedSearchPeriod).split(",");
+			beginDate=tempDate[0];
+			endDate=tempDate[1];
+		}
 		dateMap.put("beginDate", beginDate);
 		dateMap.put("endDate", endDate);
 		dateMap.put("member_id", member_id);
+		dateMap.put("search_type",search_type);
+		dateMap.put("search_word", search_word);
 		List<OrderVO> myOrderHistList=myPageService.listMyOrderHistory(dateMap);
 		
 		String beginDate1[]=beginDate.split("-");
@@ -99,10 +109,10 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 		return mav;
 	}	
 	
-	@Override
 	@RequestMapping(value="/cancelMyOrder.do" ,method = RequestMethod.POST)
 	public ModelAndView cancelMyOrder(@RequestParam("order_id")  String order_id,
-			                         HttpServletRequest request, HttpServletResponse response)  throws Exception {
+			                         HttpServletRequest request, 
+			                         HttpServletResponse response)  throws Exception {
 		ModelAndView mav = new ModelAndView();
 		myPageService.cancelOrder(order_id);
 		mav.addObject("message", "cancel_order");
@@ -112,17 +122,18 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 	
 	@Override
 	@RequestMapping(value="/myDetailInfo.do" ,method = RequestMethod.GET)
-	public ModelAndView myDetailInfo(HttpServletRequest request, HttpServletResponse response)  throws Exception {
+	public ModelAndView myDetailInfo(HttpServletRequest request, 
+			HttpServletResponse response)  throws Exception {
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 		return mav;
 	}	
 	
-	@Override
 	@RequestMapping(value="/modifyMyInfo.do" ,method = RequestMethod.POST)
 	public ResponseEntity modifyMyInfo(@RequestParam("attribute")  String attribute,
 			                 @RequestParam("value")  String value,
-			               HttpServletRequest request, HttpServletResponse response)  throws Exception {
+			               HttpServletRequest request, 
+			               HttpServletResponse response)  throws Exception {
 		Map<String,String> memberMap=new HashMap<String,String>();
 		String val[]=null;
 		HttpSession session=request.getSession();
@@ -158,9 +169,7 @@ public class MyPageControllerImpl extends BaseController  implements MyPageContr
 		}else {
 			memberMap.put(attribute,value);	
 		}
-		
 		memberMap.put("member_id", member_id);
-		
 		memberVO=(MemberVO)myPageService.modifyMyInfo(memberMap);
 		session.removeAttribute("memberInfo");
 		session.setAttribute("memberInfo", memberVO);

@@ -56,13 +56,19 @@
             where order_id=#{order_id}
     	]]>
 	</select>
-		<select id="selectMyOrderHistoryList" resultMap="orderGoodsResult"   parameterType="java.util.Map"  >
-	    <![CDATA[
+	<select id="selectMyOrderHistoryList" resultMap="orderGoodsResult"   parameterType="java.util.Map"  >
 		  select * from orders
           where member_id=#{member_id}
           and  to_char(pay_order_time,'yyyy-mm-dd')  between #{beginDate} and #{endDate}
-          order by pay_order_time desc
-    	]]>
+          <if test="search_type=='receiver_name'">
+             AND receiver_name LIKE '%'||#{search_word}||'%'
+          </if>
+          <if test="search_type=='member_id'">
+             AND member_id LIKE '%'||#{search_word}||'%'
+          </if>
+          <if test="search_type=='order_id'">
+             AND order_id LIKE '%'||#{search_word}||'%'
+          </if>
 	</select>	
 	
 	<update id="updateMyInfo" parameterType="java.util.HashMap">

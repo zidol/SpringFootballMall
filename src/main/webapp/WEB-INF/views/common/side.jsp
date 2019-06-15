@@ -40,7 +40,7 @@
 		<ul>
 			<li><a href="${contextPath}/goods/goodsList.do?goods_sort=footballshoes">축구화</a></li>
 			<li><a href="${contextPath}/goods/goodsList.do?goods_sort=uniform_top">유니폼 상의</a></li>
-			<li><a href="${contextPath}/goods/goodsList.do?goods_sort=uniform_bottom">유니폼 하의</a></li>
+			<li><a href="${contextPath}/goods/goodsList.do?goods_sort=uniform_pants">유니폼 하의</a></li>
 			<li><a href="${contextPath}/goods/goodsList.do?goods_sort=sweater">크루탑</a></li>
 			<li><a href="${contextPath}/goods/goodsList.do?goods_sort=train">트레이닝 복</a></li>
 			<li><a href="${contextPath}/goods/goodsList.do?goods_sort=accessorie">악세사리</a></li>
@@ -61,5 +61,17 @@
 </c:choose>	
 </ul>
 </nav>
-
+<div class="clear"></div>
+<div id="banner">
+	<a href="#"><img width="190"  src="${contextPath}/resources/image/side_bn2.jpg"> </a>
+</div>
+<nav>
+<ul>
+	<li><a href="#">축구용품계의 신 풋볼몰!!</a></li>
+</ul>
+</nav>
+<div class="clear"></div>
+<div id="banner">
+	<a href="#"><img width="190"  src="${contextPath}/resources/image/side_bn3.jpg"> </a>
+</div>
 </html>

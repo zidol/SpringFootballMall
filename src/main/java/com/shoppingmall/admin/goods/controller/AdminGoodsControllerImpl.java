@@ -32,7 +32,6 @@ import com.shoppingmall.member.vo.MemberVO;
 @Controller("adminGoodsController")
 @RequestMapping(value="/admin/goods")
 public class AdminGoodsControllerImpl extends BaseController implements AdminGoodsController{
-//	private static final String CURR_IMAGE_REPO_PATH = "C:\\shopping\\file_repo";
 	private static final String CURR_IMAGE_REPO_PATH = "/Users/zidol/Desktop/shopping/file_repo";
 	@Autowired
 	AdminGoodsService adminGoodsService;
@@ -119,16 +118,27 @@ public class AdminGoodsControllerImpl extends BaseController implements AdminGoo
 		String reg_id = memberVO.getMember_id();
 		
 		List<ImageFileVO>imageFileList = upload(multipartRequest);
+		
+		String message = null;
+		ResponseEntity resEntity = null;
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+		
 		if(imageFileList != null && imageFileList.size() != 0) {
 			for(ImageFileVO imageFileVO : imageFileList) {
 				imageFileVO.setReg_id(reg_id);
 			}
 			newGoodsMap.put("imageFileList", imageFileList);
+		} else {
+			
+			message = "<script>";
+			message += "alert('상품의 이미지가 없습니다.');";
+			message += "location.href='javascript:history.back();'";
+			message += ("</script>");
+			resEntity = new ResponseEntity(message, responseHeaders, HttpStatus.OK);
+			return resEntity;
 		}
-		String message = null;
-		ResponseEntity resEntity = null;
-		HttpHeaders responseHeaders = new HttpHeaders();
-		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+		
 		try {
 			int goods_id = adminGoodsService.addNewGoods(newGoodsMap);
 			Map<String, List> paramMap = new HashMap<String, List>();
@@ -180,7 +190,9 @@ public class AdminGoodsControllerImpl extends BaseController implements AdminGoo
 	}
 
 	@RequestMapping(value="/modifyGoodsForm.do", method= {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView modifyGoodsForm(@RequestParam("goods_id")int goods_id, @RequestParam("goods_size")String goods_size,HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ModelAndView modifyGoodsForm(@RequestParam("goods_id")int goods_id, @RequestParam("goods_size")String goods_size,
+									HttpServletRequest request, 
+									HttpServletResponse response) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 		Map condMap = new HashMap<>();
@@ -194,7 +206,8 @@ public class AdminGoodsControllerImpl extends BaseController implements AdminGoo
 	@RequestMapping(value="/modifyGoodsInfo.do", method= {RequestMethod.POST})
 	public ResponseEntity modifyGoodsInfo(@RequestParam("goods_id") String goods_id,
 										@RequestParam(value="goods_size", required=false) String goods_size,
-										@RequestParam(value="goods_color", required=false) String goods_color,@RequestParam("attribute")String attribute, 
+										@RequestParam(value="goods_color", required=false) String goods_color,
+										@RequestParam("attribute")String attribute, 
 			@RequestParam("value")String value, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		Map<String, String> goodsMap = new HashMap<String, String>();
 		goodsMap.put("goods_id", goods_id);

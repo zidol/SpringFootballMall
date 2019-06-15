@@ -26,7 +26,7 @@ public class AdminMemberControllerImpl extends BaseController  implements AdminM
 	AdminMemberService adminMemberService;
 	
 	@RequestMapping(value="/adminMemberMain.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView adminGoodsMain(@RequestParam Map<String, String> dateMap,
+	public ModelAndView adminMemberMain(@RequestParam Map<String, String> dateMap,
 			                           HttpServletRequest request, HttpServletResponse response)  throws Exception{
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);

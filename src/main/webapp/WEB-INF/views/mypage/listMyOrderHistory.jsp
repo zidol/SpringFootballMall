@@ -37,18 +37,104 @@ function fn_cancel_order(order_id){
 	}
 }
 
+function fn_enable_detail_search(r_search){
+	var frm_delivery_list=document.frm_delivery_list;
+	t_beginYear=frm_delivery_list.beginYear;
+	t_beginMonth=frm_delivery_list.beginMonth;
+	t_beginDay=frm_delivery_list.beginDay;
+	t_endYear=frm_delivery_list.endYear;
+	t_endMonth=frm_delivery_list.endMonth;
+	t_endDay=frm_delivery_list.endDay;
+	s_search_type=frm_delivery_list.s_search_type;
+	t_search_word=frm_delivery_list.t_search_word;
+	btn_search=frm_delivery_list.btn_search;
+	
+	if(r_search.value=='detail_search'){
+		//alert(r_search.value);
+		t_beginYear.disabled=false;
+		t_beginMonth.disabled=false;
+		t_beginDay.disabled=false;
+		t_endYear.disabled=false;
+		t_endMonth.disabled=false;
+		t_endDay.disabled=false;
+		
+		s_search_type.disabled=false;
+		t_search_word.disabled=false;
+		btn_search.disabled=false;
+	}else{
+		t_beginYear.disabled=true;
+		t_beginMonth.disabled=true;
+		t_beginDay.disabled=true;
+		t_endYear.disabled=true;
+		t_endMonth.disabled=true;
+		t_endDay.disabled=true;
+		
+		s_search_type.disabled=true;
+		t_search_word.disabled=true;
+		btn_search.disabled=true;
+	}
+		
+}
+
+function fn_detail_search(){
+	var frm_delivery_list=document.frm_delivery_list;
+	
+	beginYear=frm_delivery_list.beginYear.value;
+	beginMonth=frm_delivery_list.beginMonth.value;
+	beginDay=frm_delivery_list.beginDay.value;
+	endYear=frm_delivery_list.endYear.value;
+	endMonth=frm_delivery_list.endMonth.value;
+	endDay=frm_delivery_list.endDay.value;
+	search_type=frm_delivery_list.s_search_type.value; //콤보박스 값
+	search_word=frm_delivery_list.t_search_word.value; //input tag 값
+
+	var formObj=document.createElement("form");
+	var i_command = document.createElement("input");
+	var i_beginDate = document.createElement("input"); 
+	var i_endDate = document.createElement("input");
+	var i_search_type = document.createElement("input");
+	var i_search_word = document.createElement("input");
+    
+	//alert("beginYear:"+beginYear);
+	//alert("endDay:"+endDay);
+	//alert("search_type:"+search_type);
+	//alert("search_word:"+search_word);
+	
+    i_command.name="command";
+    i_beginDate.name="beginDate";
+    i_endDate.name="endDate";
+    i_search_type.name="search_type";
+    i_search_word.name="search_word";
+    
+    i_command.value="list_detail_order_goods";
+	i_beginDate.value=beginYear+"-"+beginMonth+"-"+beginDay;
+    i_endDate.value=endYear+"-"+endMonth+"-"+endDay;
+    i_search_type.value=search_type;
+    i_search_word.value=search_word;
+	
+    formObj.appendChild(i_command);
+    formObj.appendChild(i_beginDate);
+    formObj.appendChild(i_endDate);
+    formObj.appendChild(i_search_type);
+    formObj.appendChild(i_search_word);
+    document.body.appendChild(formObj); 
+    formObj.method="get";
+    formObj.action="${contextPath}/mypage/listMyOrderHistory.do";
+    formObj.submit();
+    //alert("submit");
+	
+}
 </script>
 </head>
 <body>
 	<H3>주문 배송 조회</H3>
-	<form  method="post">	
+	<form  method="post" name="frm_delivery_list">	
 		<table>
 			<tbody>
 				<tr>
 					<td>
-						<input type="radio" name="simple"  checked/> 간단조회 &nbsp;&nbsp;&nbsp;
-						<input type="radio" name="simple" /> 일간  &nbsp;&nbsp;&nbsp;
-						<input type="radio" name="simple" /> 월간
+						<input type="radio" name="r_search_option" value="simple_search" checked onClick="fn_enable_detail_search(this)"/> 간단조회 &nbsp;&nbsp;&nbsp;
+						<input type="radio" name="r_search_option" value="detail_search"  onClick="fn_enable_detail_search(this)" /> 상세조회 &nbsp;&nbsp;&nbsp;
 					</td>
 				</tr>
 				<tr>
@@ -115,25 +201,131 @@ function fn_cancel_order(order_id){
 				</tr>
 				<tr>
 				  <td>
-				    <select name="search_condition">
-						<option value="2015" checked>전체</option>
-						<option value="2014">수령자</option>
-						<option value="2013">주문자</option>
-						<option value="2012">주문번호</option>
+				    <select name="s_search_type">
+						<option value="receiver_name">수령자</option>
+						<option value="member_id">주문자</option>
+						<option value="order_id">주문번호</option>
 					</select>
-					<input  type="text"  size="30" />  
-					<input   type="button"  value="조회"/>
+					<input  type="text"  size="30" name="t_search_word"/>  
+					<input  type="button" name="btn_search" onClick="fn_detail_search()" value="조회"/>
 				  </td>
 				</tr>
 				<tr>
 				  <td>
-					조회한 기간:<input  type="text"  size="4" value="${beginYear}" />년
-							<input  type="text"  size="4" value="${beginMonth}"/>월	
-							 <input  type="text"  size="4" value="${beginDay}"/>일	
-							 &nbsp; ~
-							<input  type="text"  size="4" value="${endYear}" />년 
-							<input  type="text"  size="4" value="${endMonth}"/>월	
-							 <input  type="text"  size="4" value="${endDay}"/>일							 
+					조회 기간:
+					<select name="beginYear" disabled>
+					 <c:forEach   var="i" begin="0" end="5">
+					      <c:choose>
+					        <c:when test="${beginYear==beginYear-i }">
+					          <option value="${beginYear-i }" selected>${beginYear-i  }</option>
+					        </c:when>
+					        <c:otherwise>
+					          <option value="${beginYear-i }">${beginYear-i }</option>
+					        </c:otherwise>
+					      </c:choose>
+					    </c:forEach>
+					</select>년 
+					<select name="beginMonth" disabled >
+						 <c:forEach   var="i" begin="1" end="12">
+					      <c:choose>
+					        <c:when test="${beginMonth==i and i < 10}">
+					          <option value="0${i }"  selected>0${i }</option>
+					        </c:when>
+					        <c:when test="${beginMonth==i }">
+					          <option value="${i }"  selected>${i }</option>
+					        </c:when>
+					        <c:otherwise>
+					          <c:choose>
+					            <c:when test="${i <10 }">
+					              <option value="0${i }">0${i }</option>
+					            </c:when>
+					            <c:otherwise>
+					            <option value="${i }">${i }</option>
+					            </c:otherwise>
+					          </c:choose>
+					        </c:otherwise>
+					      </c:choose>
+					    </c:forEach>					
+					</select>월
+					 <select name="beginDay" disabled >
+					  <c:forEach   var="i" begin="1" end="31">
+					      <c:choose>
+					        <c:when test="${beginDay==i and i < 10}">
+					          <option value="0${i }"  selected>0${i }</option>
+					        </c:when>
+					        <c:when test="${beginDay==i }">
+					          <option value="${i }"  selected>${i }</option>
+					        </c:when>
+					        <c:otherwise>
+					          <c:choose>
+					            <c:when test="${i <10 }">
+					              <option value="0${i }">0${i }</option>
+					            </c:when>
+					            <c:otherwise>
+					            <option value="${i }">${i }</option>
+					            </c:otherwise>
+					          </c:choose>
+					        </c:otherwise>
+					      </c:choose>
+					    </c:forEach>	
+					</select>일  &nbsp; ~
+					
+					<select name="endYear" disabled >
+					 <c:forEach   var="i" begin="0" end="5">
+					      <c:choose>
+					        <c:when test="${endYear==endYear-i }">
+					          <option value="${endYear-i }" selected>${endYear-i  }</option>
+					        </c:when>
+					        <c:otherwise>
+					          <option value="${endYear-i }">${endYear-i }</option>
+					        </c:otherwise>
+					      </c:choose>
+					    </c:forEach>
+					</select>년 
+					<select name="endMonth" disabled >
+						 <c:forEach   var="i" begin="1" end="12">
+					      <c:choose>
+					        <c:when test="${endMonth==i and i < 10}">
+					          <option value="0${i }"  selected>0${i }</option>
+					        </c:when>
+					        <c:when test="${endMonth==i }">
+					          <option value="${i }"  selected>${i }</option>
+					        </c:when>
+					        <c:otherwise>
+					          <c:choose>
+					            <c:when test="${i <10 }">
+					              <option value="0${i }">0${i }</option>
+					            </c:when>
+					            <c:otherwise>
+					            <option value="${i }">${i }</option>
+					            </c:otherwise>
+					          </c:choose>
+					        </c:otherwise>
+					      </c:choose>
+					    </c:forEach>					
+					</select>월
+					 <select name="endDay" disabled >
+					  <c:forEach   var="i" begin="1" end="31">
+					      <c:choose>
+					        <c:when test="${endDay==i and i < 10}">
+					          <option value="0${i }"  selected>0${i }</option>
+					        </c:when>
+					        <c:when test="${endDay==i }">
+					          <option value="${i }"  selected>${i }</option>
+					        </c:when>
+					        <c:otherwise>
+					          <c:choose>
+					            <c:when test="${i <10 }">
+					              <option value="0${i }">0${i }</option>
+					            </c:when>
+					            <c:otherwise>
+					            <option value="${i }">${i }</option>
+					            </c:otherwise>
+					          </c:choose>
+					        </c:otherwise>
+					      </c:choose>
+					    </c:forEach>	
+					</select>					 
 				  </td>
 				</tr>
 			</tbody>

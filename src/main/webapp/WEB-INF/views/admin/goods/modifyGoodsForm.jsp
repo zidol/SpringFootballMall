@@ -208,7 +208,8 @@ function fn_modify_goods(goods_id, attribute, goods_size, goods_color){
 						<option value="footballshoes" selected>Ãà±¸È­</option>
 						<option value="sweater" >Å©·çÅ¾</option>
 						<option value="sox" >¾ç¸»</option>
-						<option value="uniform" >À¯´ÏÆû</option>
+						<option value="uniform_top" >À¯´ÏÆû »óÀÇ</option>
+						<option value="uniform_pants" >À¯´ÏÆû ÇÏÀÇ</option>
 						<option value="fooballshoes" >Æ®·¹ÀÌ´×º¹</option>
 						<option value="fooballshoes" >¾Ç¼¼»ç¸®</option>
 				  	  </c:when>
@@ -216,7 +217,8 @@ function fn_modify_goods(goods_id, attribute, goods_size, goods_color){
 						<option value="footballshoes" >Ãà±¸È­</option>
 						<option value="sweater" selected>Å©·çÅ¾</option>
 						<option value="sox" >¾ç¸»</option>
-						<option value="uniform" >À¯´ÏÆû</option>
+						<option value="uniform_top" >À¯´ÏÆû »óÀÇ</option>
+						<option value="uniform_pants" >À¯´ÏÆû ÇÏÀÇ</option>
 						<option value="train" >Æ®·¹ÀÌ´×º¹</option>
 						<option value="accessorie" >¾Ç¼¼»ç¸®</option>
 				  	  </c:when>
@@ -224,15 +226,26 @@ function fn_modify_goods(goods_id, attribute, goods_size, goods_color){
 						<option value="footballshoes" >Ãà±¸È­</option>
 						<option value="sweater" >Å©·çÅ¾</option>
 						<option value="sox" selected >¾ç¸»</option>
-						<option value="uniform" >À¯´ÏÆû</option>
+						<option value="uniform_top" >À¯´ÏÆû »óÀÇ</option>
+						<option value="uniform_pants" >À¯´ÏÆû ÇÏÀÇ</option>
 						<option value="train" >Æ®·¹ÀÌ´×º¹</option>
 						<option value="accessorie" >¾Ç¼¼»ç¸®</option>
 				  	  </c:when>
-				  	  <c:when test="${goods.goods_sort=='uniform' }">
+				  	  <c:when test="${goods.goods_sort=='uniform_top' }">
 				  	  	<option value="footballshoes" >Ãà±¸È­</option>
 						<option value="sweater" >Å©·çÅ¾</option>
 						<option value="sox" >¾ç¸»</option>
-						<option value="uniform" selected>À¯´ÏÆû</option>
+						<option value="uniform_top" selected >À¯´ÏÆû »óÀÇ</option>
+						<option value="uniform_pants" >À¯´ÏÆû ÇÏÀÇ</option>
+						<option value="train" >Æ®·¹ÀÌ´×º¹</option>
+						<option value="accessorie" >¾Ç¼¼»ç¸®</option>
+				  	  </c:when>
+				  	  <c:when test="${goods.goods_sort=='uniform_pants' }">
+				  	  	<option value="footballshoes" >Ãà±¸È­</option>
+						<option value="sweater" >Å©·çÅ¾</option>
+						<option value="sox" >¾ç¸»</option>
+						<option value="uniform_top" >À¯´ÏÆû »óÀÇ</option>
+						<option value="uniform_pants" selected>À¯´ÏÆû ÇÏÀÇ</option>
 						<option value="train" >Æ®·¹ÀÌ´×º¹</option>
 						<option value="accessorie" >¾Ç¼¼»ç¸®</option>
 				  	  </c:when>
@@ -240,7 +253,8 @@ function fn_modify_goods(goods_id, attribute, goods_size, goods_color){
 				  	  	<option value="footballshoes" >Ãà±¸È­</option>
 						<option value="sweater" >Å©·çÅ¾</option>
 						<option value="sox" >¾ç¸»</option>
-						<option value="uniform" >À¯´ÏÆû</option>
+						<option value="uniform_top" >À¯´ÏÆû »óÀÇ</option>
+						<option value="uniform_pants" >À¯´ÏÆû ÇÏÀÇ</option>
 						<option value="fooballshoes" selected>Æ®·¹ÀÌ´×º¹</option>
 						<option value="accessorie" >¾Ç¼¼»ç¸®</option>
 				  	  </c:when>
