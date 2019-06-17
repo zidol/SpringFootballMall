@@ -74,26 +74,26 @@
 	<!-- 주문 전체 보기, 페이징 처리(한 페이지 10건, 한 섹션에 10페이지) -->
 	 <select id="selectNewOrderList" resultMap="orderResult"  parameterType="orderVO"  >
 	   SELECT * FROM (SELECT ROWNUM AS RECNUM
-			                    , T.*
-			                 FROM (SELECT * 
-			                         FROM ORDERS
-			                        WHERE TO_CHAR(PAY_ORDER_TIME, 'YYYY-MM-DD') BETWEEN #{beginDate} and #{endDate}
-			                       
-			                       <if test="search_type=='orderer_name'">
-			                          AND ORDERER_NAME LIKE '%'||#{search_word}||'%'
-			                       </if>
-			                       <if test="search_type=='orderer_id'">
-			                          AND MEMBER_ID LIKE '%'||#{search_word}||'%'
-			                       </if>
-			                       <if test="search_type=='orderer_hp'">
-			                          AND ORDERER_HP LIKE '%'||#{search_word}||'%'
-			                       </if>
-			                       <if test="search_type=='orderer_goods'">
-			                          AND GOODS_TITLE LIKE '%'||#{search_word}||'%'
-			                       </if>
-			                       ORDER BY PAY_ORDER_TIME DESC
-			                       ) T)
-			         WHERE RECNUM BETWEEN (#{section}-1)*100 + (#{pageNum}-1)*10+1 and (#{section}-1)*100 + (#{pageNum})*10
+		                    , T.*
+		                 FROM (SELECT * 
+		                         FROM ORDERS
+		                        WHERE TO_CHAR(PAY_ORDER_TIME, 'YYYY-MM-DD') BETWEEN #{beginDate} and #{endDate}
+		                       
+		                       <if test="search_type=='orderer_name'">
+		                          AND ORDERER_NAME LIKE '%'||#{search_word}||'%'
+		                       </if>
+		                       <if test="search_type=='orderer_id'">
+		                          AND MEMBER_ID LIKE '%'||#{search_word}||'%'
+		                       </if>
+		                       <if test="search_type=='orderer_hp'">
+		                          AND ORDERER_HP LIKE '%'||#{search_word}||'%'
+		                       </if>
+		                       <if test="search_type=='orderer_goods'">
+		                          AND GOODS_TITLE LIKE '%'||#{search_word}||'%'
+		                       </if>
+		                       ORDER BY PAY_ORDER_TIME DESC
+		                       ) T)
+		         WHERE RECNUM BETWEEN (#{section}-1)*100 + (#{pageNum}-1)*10+1 and (#{section}-1)*100 + (#{pageNum})*10
 	</select>
 	
 	<!-- 주문 상태 변경 -->

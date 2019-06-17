@@ -96,28 +96,28 @@ function fn_overlapped(){
 	<div id="detail_table">
 		<table>
 			<tbody>
-				<tr class="dot_line">
+				<tr class="dot_line" width=400>
 					<td class="fixed_join">아이디</td>
 					<td>
-					  <input type="text" name="_member_id"  id="_member_id"  size="20" />
+					  <input class="form-control" type="text" name="_member_id"  id="_member_id"  size="20" />
 					  <input type="hidden" name="member_id"  id="member_id" />
-					  
-					  <input type="button"  id="btnOverlapped" value="중복체크" onClick="fn_overlapped()" />
+					  <br>
+					  <input class="btn btn-primary" type="button"  id="btnOverlapped" value="중복체크" onClick="fn_overlapped()" />
 					</td>
 				</tr>
 				<tr class="dot_line">
 					<td class="fixed_join">비밀번호</td>
-					<td><input name="member_pw" type="password" size="20" /></td>
+					<td><input class="form-control" name="member_pw" type="password" size="20" /></td>
 				</tr>
 				<tr class="dot_line">
 					<td class="fixed_join">이름</td>
-					<td><input name="member_name" type="text" size="20" /></td>
+					<td><input class="form-control" name="member_name" type="text" size="20" /></td>
 				</tr>
 				<tr class="dot_line">
 					<td class="fixed_join">성별</td>
 					<td><input type="radio" name="member_gender" value="102" />
 						여성<span style="padding-left:120px"></span>
-						 <input type="radio" name="member_gender" value="101" checked />남성
+						 <input type="radio" name="member_gender" value="101" checked /> 남성
 					</td>
 				</tr>
 				<tr class="dot_line">
@@ -223,12 +223,12 @@ function fn_overlapped(){
 				<tr class="dot_line">
 					<td class="fixed_join">주소</td>
 					<td>
-					   <input type="text" id="zipcode" name="zipcode" size="10" > <a href="javascript:execDaumPostcode()">우편번호검색</a>
+					   <input class="form-control" type="text" id="zipcode" name="zipcode" size="10" > <a href="javascript:execDaumPostcode()">우편번호검색</a>
 					  <br>
 					  <p> 
-					   지번 주소:<br><input type="text" id="road_address"  name="road_address" size="50"><br><br>
-					   도로명 주소: <input type="text" id="jibun_address" name="jibun_address" size="50"><br><br>
-					   나머지 주소: <input type="text"  name="detail_address" size="50" />
+					   지번 주소:<br><input class="form-control" type="text" id="road_address"  name="road_address" size="50"><br><br>
+					   도로명 주소: <input class="form-control" type="text" id="jibun_address" name="jibun_address" size="50"><br><br>
+					   나머지 주소: <input class="form-control" type="text"  name="detail_address" size="50" />
 					   <span id="guide" style="color:#999"></span>
 					   </p>
 					</td>
@@ -237,12 +237,12 @@ function fn_overlapped(){
 		</table>
 		</div>
 		<div class="clear">
-		<br><br>
+		<br>
 		<table align="center">
 		<tr >
 			<td >
-				<input type="submit"  value="회원 가입">
-				<input  type="reset"  value="다시입력">
+				<input class="btn btn-primary" type="submit"  value="회원 가입">
+				<input class="btn btn-primary" type="reset"  value="다시입력">
 			</td>
 		</tr>
 	</table>

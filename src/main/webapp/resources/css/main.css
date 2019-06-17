@@ -303,7 +303,7 @@ article h4 {
 }
 
 #detail_table table td.fixed_join {
-	width: 110px; font-weight: bold; color: #0000cc;background:  #e1e1ff;
+	width: 110px; font-weight: bold; color: black ;background:  #dfdfdf;
 }
 
 #detail_table ul {
@@ -509,7 +509,7 @@ footer img {
 
 
 .detail_table table td.fixed_join {
-	width: 110px; font-weight: bold; color: #0000cc;background:  #e1e1ff;
+	width: 110px; font-weight: bold; color: black ;background:  #dfdfdf;
 }
 
 .detail_table ul {

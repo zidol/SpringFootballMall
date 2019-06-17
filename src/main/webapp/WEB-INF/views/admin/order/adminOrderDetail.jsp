@@ -46,7 +46,7 @@ function fn_modify_order_state(order_id){
 	<H1>1. 주문 상세정보</H1>
 	<table class="list_view">
 		<tbody align=center>
-			<tr style="background: #33ff00">
+			<tr style="background: #dfdfdf">
 			     <td>주문번호 </td>
 				<td colspan=2 class="fixed">주문상품명</td>
 				<td>수량</td>
@@ -244,7 +244,7 @@ function fn_modify_order_state(order_id){
 				  <input  type="hidden" name="h_delivery_state" value="${deliveryInfo.delivery_state }" />
 				</td>
 				<td width=10%>
-			     <input  type="button" value="배송수정"  onClick="fn_modify_order_state('${deliveryInfo.order_id}')"/>
+			     <input class="btn btn-danger btn-xs" type="button" value="배송수정"  onClick="fn_modify_order_state('${deliveryInfo.order_id}')"/>
 			    </td>
 				</tr>
 				
@@ -253,14 +253,9 @@ function fn_modify_order_state(order_id){
 	</div>
 </form>
     <div class="clear"></div>
-	<br>
-	<br>
-	<br>
 		<br>
 		<br> 
-		<a href="${contextPath}/main/main.do"> 
-		   <IMG width="75" alt="" src="${contextPath}/resources/image/btn_shoping_continue.jpg">
-		</a>
+		<input class="btn btn-primary btn-sm" type="button" onclick="location.href='${contextPath}/main/main.do'" value="메인으로">
 <div class="clear"></div>		
 	
 			

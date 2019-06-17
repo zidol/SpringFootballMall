@@ -346,7 +346,6 @@ public class AdminGoodsControllerImpl extends BaseController implements AdminGoo
 			                      @RequestParam("image_id") int image_id,
 			                      @RequestParam("imageFileName") String imageFileName,
 			                      HttpServletRequest request, HttpServletResponse response)  throws Exception {
-		
 		adminGoodsService.removeGoodsImage(image_id);
 		try{
 			File srcFile = new File(CURR_IMAGE_REPO_PATH+"/"+goods_id+"/"+imageFileName);

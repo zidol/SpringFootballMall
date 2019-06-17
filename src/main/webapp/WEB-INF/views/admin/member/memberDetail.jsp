@@ -115,12 +115,9 @@ function init(){
 <script>
 function fn_modify_member_info(member_id,mod_type){
 	var value;
-	// alert(member_id);
-	// alert("mod_type:"+mod_type);
 		var frm_mod_member=document.frm_mod_member;
 		if(mod_type=='member_pw'){
 			value=frm_mod_member.member_pw.value;
-			alert("member_pw:"+value);
 		}else if(mod_type=='member_gender'){
 			var member_gender=frm_mod_member.member_gender;
 			for(var i=0; i<member_gender.length; i++){
@@ -278,7 +275,7 @@ function fn_delete_member(member_id ,del_yn){
 						<input name="member_id" type="text" size="20" value="${member_info.member_id }"  disabled/>
 					</td>
 					 <td>
-					  <input type="button" value="수정하기"  onClick="fn_modify_member_info('${member_info.member_id }','member_name')" disabled />
+					  <input class="btn btn-warning btn-xs" type="button" value="수정"  onClick="fn_modify_member_info('${member_info.member_id }','member_name')" disabled />
 					</td>
 				</tr>
 				<tr class="dot_line">
@@ -287,7 +284,7 @@ function fn_delete_member(member_id ,del_yn){
 					  <input name="member_pw" type="password" size="20" value="${member_info.member_pw }" />
 					</td>
 					<td>
-					  <input type="button" value="수정하기" onClick="fn_modify_member_info('${member_info.member_id }','member_pw')" />
+					  <input class="btn btn-warning btn-xs" type="button" value="수정" onClick="fn_modify_member_info('${member_info.member_id }','member_pw')" />
 					</td>
 				</tr>
 				<tr class="dot_line">
@@ -296,7 +293,7 @@ function fn_delete_member(member_id ,del_yn){
 					  <input name="member_name" type="text" size="20" value="${member_info.member_name }"  disabled />
 					 </td>
 					 <td>
-					  <input type="button" value="수정하기" disabled onClick="fn_modify_member_info('${member_info.member_id }','member_name')" />
+					  <input class="btn btn-warning btn-xs" type="button" value="수정" disabled onClick="fn_modify_member_info('${member_info.member_id }','member_name')" />
 					</td>
 				</tr>
 				<tr class="dot_line">
@@ -314,7 +311,7 @@ function fn_delete_member(member_id ,del_yn){
 					   </c:choose>
 					</td>
 					<td>
-					  <input type="button" value="수정하기" onClick="fn_modify_member_info('${member_info.member_id }','member_gender')" />
+					  <input class="btn btn-warning btn-xs" type="button" value="수정" onClick="fn_modify_member_info('${member_info.member_id }','member_gender')" />
 					</td>
 				</tr>
 				<tr class="dot_line">
@@ -357,23 +354,9 @@ function fn_delete_member(member_id ,del_yn){
 							</c:choose>
 					   	</c:forEach>
 					</select>일 
-					
-					  <%--  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					   <c:choose>
-					    <c:when test="${member_info.member_birth_gn=='2' }"> 
-					  <input type="radio" name="member_birth_gn" value="2" checked />양력
-						&nbsp;&nbsp;&nbsp; 
-						<input type="radio"  name="member_birth_gn" value="1" />음력
-						</c:when>
-						<c:otherwise>
-						  <input type="radio" name="member_birth_gn" value="2" />양력
-						   &nbsp;&nbsp;&nbsp; 
-						<input type="radio"  name="member_birth_gn" value="1" checked  />음력
-						</c:otherwise>
-						</c:choose> --%>
 					</td>
 					<td>
-					  <input type="button" value="수정하기" onClick="fn_modify_member_info('${member_info.member_id }','member_birth')" />
+					  <input class="btn btn-warning btn-xs" type="button" value="수정" onClick="fn_modify_member_info('${member_info.member_id }','member_birth')" />
 					</td>
 				</tr>
 				<tr class="dot_line">
@@ -410,7 +393,7 @@ function fn_delete_member(member_id ,del_yn){
 					    - <input type="text" size=4  name="tel3" value="${member_info.tel3 }">
 					</td>
 					<td>
-					  <input type="button" value="수정하기" onClick="fn_modify_member_info('${member_info.member_id }','tel')" />
+					  <input class="btn btn-warning btn-xs" type="button" value="수정" onClick="fn_modify_member_info('${member_info.member_id }','tel')" />
 					</td>
 				</tr>
 				<tr class="dot_line">
@@ -437,7 +420,7 @@ function fn_delete_member(member_id ,del_yn){
 					 </c:choose>	
 				    </td>
 					<td>
-					  <input type="button" value="수정하기" onClick="fn_modify_member_info('${member_info.member_id }','hp')" />
+					  <input class="btn btn-warning btn-xs" type="button" value="수정" onClick="fn_modify_member_info('${member_info.member_id }','hp')" />
 					</td>	
 				</tr>
 				<tr class="dot_line">
@@ -468,7 +451,7 @@ function fn_delete_member(member_id ,del_yn){
 					 </c:choose>
 					</td>
 					<td>
-					  <input type="button" value="수정하기" onClick="fn_modify_member_info('${member_info.member_id }','email')" />
+					  <input class="btn btn-warning btn-xs" type="button" value="수정" onClick="fn_modify_member_info('${member_info.member_id }','email')" />
 					</td>
 				</tr>
 				<tr class="dot_line">
@@ -484,7 +467,7 @@ function fn_delete_member(member_id ,del_yn){
 					   </p>
 					</td>
 					<td>
-					  <input type="button" value="수정하기" onClick="fn_modify_member_info('${member_info.member_id }','address')" />
+					  <input class="btn btn-warning btn-xs" type="button" value="수정" onClick="fn_modify_member_info('${member_info.member_id }','address')" />
 					</td>
 				</tr>
 			</tbody>
@@ -498,10 +481,10 @@ function fn_delete_member(member_id ,del_yn){
 				<input type="hidden" name="command"  value="modify_my_info" /> 
 				<c:choose>
 				  <c:when test="${member_info.delete_yn=='Y' }">
-				    <input  type="button"  value="회원복원" onClick="fn_delete_member('${member_info.member_id }','N')">   
+				    <input class="btn btn-primary" type="button"  value="회원복원" onClick="fn_delete_member('${member_info.member_id }','N')">   
 				  </c:when>
 				  <c:when  test="${member_info.delete_yn=='N' }">
-				    <input  type="button"  value="회원탈퇴" onClick="fn_delete_member('${member_info.member_id }','Y')">
+				    <input class="btn btn-primary" type="button"  value="회원탈퇴" onClick="fn_delete_member('${member_info.member_id }','Y')">
 				  </c:when>
 				  
 				</c:choose>

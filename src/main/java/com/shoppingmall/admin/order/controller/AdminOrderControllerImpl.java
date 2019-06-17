@@ -26,12 +26,9 @@ import com.shoppingmall.order.vo.OrderVO;
 public class AdminOrderControllerImpl extends BaseController  implements AdminOrderController{
 	@Autowired
 	AdminOrderService adminOrderService;
-	
-	
+
 	@RequestMapping(value="/adminOrderMain.do" ,method={RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView adminOrderMain(@RequestParam Map<String, String> dateMap,
-//										@RequestParam("search_type")String search_type,
-//										@RequestParam("search_type")String search_word,
 			                          HttpServletRequest request, HttpServletResponse response)  throws Exception {
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
@@ -63,10 +60,6 @@ public class AdminOrderControllerImpl extends BaseController  implements AdminOr
 		condMap.put("endDate", endDate);
 		condMap.put("search_type",search_type);
 		condMap.put("search_word", search_word);
-		System.out.println(beginDate);
-		System.out.println(endDate);
-		System.out.println(search_type);
-		System.out.println(search_word);
 		List<OrderVO> newOrderList=adminOrderService.listNewOrder(condMap);
 		mav.addObject("newOrderList",newOrderList);
 		
@@ -78,16 +71,11 @@ public class AdminOrderControllerImpl extends BaseController  implements AdminOr
 		mav.addObject("endYear",endDate2[0]);
 		mav.addObject("endMonth",endDate2[1]);
 		mav.addObject("endDay",endDate2[2]);
-		
-//		mav.addObject("search_type", search_type);
-//		mav.addObject("search_word", search_type);
 		mav.addObject("section", section);
 		mav.addObject("pageNum", pageNum);
 		return mav;
-		
 	}
-	
-	@Override
+
 	@RequestMapping(value="/modifyDeliveryState.do" ,method={RequestMethod.POST})
 	public ResponseEntity modifyDeliveryState(@RequestParam Map<String, String> deliveryMap, 
 			                        HttpServletRequest request, HttpServletResponse response)  throws Exception {

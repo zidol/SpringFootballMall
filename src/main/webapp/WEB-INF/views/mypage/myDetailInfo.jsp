@@ -250,7 +250,7 @@ function fn_modify_member_info(attribute){
 					  <input name="member_pw" type="password" size="20" value="${memberInfo.member_pw }" />
 					</td>
 					<td>
-					  <input type="button" value="수정하기" onClick="fn_modify_member_info('member_pw')" />
+					  <input class="btn btn-warning btn-xs" type="button" value="수정" onClick="fn_modify_member_info('member_pw')" />
 					</td>
 				</tr>
 				<tr class="dot_line">
@@ -278,11 +278,11 @@ function fn_modify_member_info(attribute){
 					   </c:choose>
 					</td>
 					<td>
-					  <input type="button" value="수정하기" onClick="fn_modify_member_info('member_gender')" />
+					  <input class="btn btn-warning btn-xs" type="button" value="수정" onClick="fn_modify_member_info('member_gender')" />
 					</td>
 				</tr>
 				<tr class="dot_line">
-					<td class="fixed_join">법정생년월일</td>
+					<td class="fixed_join">생년월일</td>
 					<td>
 					   <select name="member_birth_y">
 					     <c:forEach var="i" begin="1" end="100">
@@ -334,7 +334,7 @@ function fn_modify_member_info(attribute){
 						</c:choose> --%>
 					</td>
 					<td>
-					  <input type="button" value="수정하기" onClick="fn_modify_member_info('member_birth')" />
+					  <input class="btn btn-warning btn-xs" type="button" value="수정" onClick="fn_modify_member_info('member_birth')" />
 					</td>
 				</tr>
 				<tr class="dot_line">
@@ -371,11 +371,11 @@ function fn_modify_member_info(attribute){
 					    - <input type="text" size=4  name="tel3" value="${memberInfo.tel3 }">
 					</td>
 					<td>
-					  <input type="button" value="수정하기" onClick="fn_modify_member_info('tel')" />
+					  <input class="btn btn-warning btn-xs" type="button" value="수정" onClick="fn_modify_member_info('tel')" />
 					</td>
 				</tr>
 				<tr class="dot_line">
-					<td class="fixed_join">휴대폰번호</td>
+					<td class="fixed_join">휴대폰</td>
 					<td>
 					   <select  name="hp1" id="hp1">
 							<option>없음</option>
@@ -398,7 +398,7 @@ function fn_modify_member_info(attribute){
 					 </c:choose>	
 				    </td>
 					<td>
-					  <input type="button" value="수정하기" onClick="fn_modify_member_info('hp')" />
+					  <input class="btn btn-warning btn-xs" type="button" value="수정" onClick="fn_modify_member_info('hp')" />
 					</td>	
 				</tr>
 				<tr class="dot_line">
@@ -429,7 +429,7 @@ function fn_modify_member_info(attribute){
 					 </c:choose>
 					</td>
 					<td>
-					  <input type="button" value="수정하기" onClick="fn_modify_member_info('email')" />
+					  <input class="btn btn-warning btn-xs" type="button" value="수정" onClick="fn_modify_member_info('email')" />
 					</td>
 				</tr>
 				<tr class="dot_line">
@@ -444,7 +444,7 @@ function fn_modify_member_info(attribute){
 					   </p>
 					</td>
 					<td>
-					  <input type="button" value="수정하기" onClick="fn_modify_member_info('address')" />
+					  <input class="btn btn-warning btn-xs" type="button" value="수정" onClick="fn_modify_member_info('address')" />
 					</td>
 				</tr>
 			</tbody>
@@ -456,7 +456,7 @@ function fn_modify_member_info(attribute){
 		<tr>
 			<td >
 				<input type="hidden" name="command"  value="modify_my_info" /> 
-				<input name="btn_cancel_member" type="button"  value="수정 취소">
+				<input class="btn btn-primary btn-xs" name="btn_cancel_member" type="button" onclick="location.href='${contextPath}/main/main.do'" value="메인으로">
 			</td>
 		</tr>
 	</table>

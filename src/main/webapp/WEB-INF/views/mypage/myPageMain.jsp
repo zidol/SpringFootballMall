@@ -44,7 +44,7 @@ function fn_cancel_order(order_id){
 	</h1>
 	<table class="list_view">
 		<tbody align=center>
-			<tr style="background: #33ff00">
+			<tr style="background: #dfdfdf">
 				<td>주문번호</td>
 				<td>주문일자</td>
 				<td>주문상품</td>

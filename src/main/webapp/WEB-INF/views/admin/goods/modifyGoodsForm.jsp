@@ -164,8 +164,8 @@ function fn_modify_goods(goods_id, attribute, goods_size, goods_color){
 	var tr = document.getElementById(trId);
 
       	$.ajax({
-    		type : "post",
-    		async : true, //false인 경우 동기식으로 처리한다.
+    		type : 'post',
+    		async : false, //false인 경우 동기식으로 처리한다.
     		url : "${contextPath}/admin/goods/removeGoodsImage.do",
     		data: {goods_id:goods_id,
      	         image_id:image_id,
@@ -175,6 +175,9 @@ function fn_modify_goods(goods_id, attribute, goods_size, goods_color){
                 tr.style.display = 'none';
     		},
     		error : function(data, textStatus) {
+    			console.log("goods_id : " + data.goods_id);
+    			console.log("image_id : " + data.image_id);
+    			console.log("imageFileName : " + data.imageFileName);
     			alert("에러가 발생했습니다."+textStatus);
     		},
     		complete : function(data, textStatus) {
@@ -270,69 +273,60 @@ function fn_modify_goods(goods_id, attribute, goods_size, goods_color){
 					</select>
 				</td>
 				<td >
-				 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_sort')"/>
+				 <input class="btn btn-warning btn-xs" type="button" value="수정"  onClick="fn_modify_goods('${goods.goods_id }','goods_sort')"/>
 				</td>
 			</tr>
 			<tr >
 				<td >상품이름</td>
-				<td><input name="goods_title" type="text" size="40"  value="${goods.goods_title }"/></td>
+				<td><input class="form-control" name="goods_title" type="text" size="40"  value="${goods.goods_title }"/></td>
 				<td>
-				 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_title')"/>
+				 <input class="btn btn-warning btn-xs" type="button" value="수정"  onClick="fn_modify_goods('${goods.goods_id }','goods_title')"/>
 				</td>
 			</tr>
-			
-		<%-- 	<tr>
-				<td >저자</td>
-				<td><input name="goods_writer" type="text" size="40" value="${goods.goods_writer }" /></td>
-								<td>
-				 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_writer')"/>
-				</td>
-				
-			</tr> --%>
 			<tr>
 				<td >제조사</td>
-				<td><input name="goods_manufacturer" type="text" size="40" value="${goods.goods_manufacturer }" /></td>
+				<td><input class="form-control" name="goods_manufacturer" type="text" size="40" value="${goods.goods_manufacturer }" /></td>
 			     <td>
-				  <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_manufacturer')"/>
+				  <input class="btn btn-warning btn-xs" type="button" value="수정"  onClick="fn_modify_goods('${goods.goods_id }','goods_manufacturer')"/>
 				</td>
 				
 			</tr>
 			<tr>
 				<td>제품 사이즈</td>
-				<td><input name="goods_size" type="text" size="40" value="${goods.goods_size }"/></td>
+				<td><input class="form-control" name="goods_size" type="text" size="40" value="${goods.goods_size }"/></td>
 				<td>
-				  <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }')"/>
+				  <input class="btn btn-warning btn-xs" type="button" value="수정"  onClick="fn_modify_goods('${goods.goods_id }')"/>
 				</td>
 			</tr>
 			<tr>
 				<td >제픔 색상</td>
-				<td><input name="goods_color" type="text" size="40" value="${goods.goods_color }"/></td>
+				<td><input class="form-control" name="goods_color" type="text" size="40" value="${goods.goods_color }"/></td>
 				<td>
-				  <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_color')"/>
+				  <input class="btn btn-warning btn-xs" type="button" value="수정"  onClick="fn_modify_goods('${goods.goods_id }','goods_color')"/>
 				</td>
 			</tr>
 			<tr>
 				<td >재고 수량</td>
-				<td><input name="goods_qty" type="text" size="40" value="${goods.goods_qty }"/></td>
+				<td><input class="form-control" name="goods_qty" type="text" size="40" value="${goods.goods_qty }"/></td>
 				<td>
-				  <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_qty','${goods.goods_size }','${goods.goods_color }','${goods.goods_size }')"/>
+				  <input class="btn btn-warning btn-xs" type="button" value="수정"  onClick="fn_modify_goods('${goods.goods_id }','goods_qty','${goods.goods_size }','${goods.goods_color }','${goods.goods_size }')"/>
 				</td>
 			</tr>
 			
 			<tr>
 				<td >상품정가</td>
-				<td><input name="goods_price" type="text" size="40" value="${goods.goods_price }" /></td>
+				<td><input class="form-control" name="goods_price" type="text" size="40" value="${goods.goods_price }" /></td>
 				<td>
-				 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_price')"/>
+				 <input class="btn btn-warning btn-xs" type="button" value="수정"  onClick="fn_modify_goods('${goods.goods_id }','goods_price')"/>
 				</td>
 				
 			</tr>
 			
 			<tr>
 				<td >상품판매가격</td>
-				<td><input name="goods_sales_price" type="text" size="40" value="${goods.goods_sales_price }" /></td>
+				<td><input class="form-control" name="goods_sales_price" type="text" size="40" value="${goods.goods_sales_price }" /></td>
 				<td>
-				 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_sales_price')"/>
+				 <input class="btn btn-warning btn-xs" type="button" value="수정"  onClick="fn_modify_goods('${goods.goods_id }','goods_sales_price')"/>
 				</td>
 				
 			</tr>
@@ -340,9 +334,9 @@ function fn_modify_goods(goods_id, attribute, goods_size, goods_color){
 			
 			<tr>
 				<td >상품 구매 포인트</td>
-				<td><input name="goods_point" type="text" size="40" value="${goods.goods_point }" /></td>
+				<td><input class="form-control" name="goods_point" type="text" size="40" value="${goods.goods_point }" /></td>
 				<td>
-				 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_point')"/>
+				 <input class="btn btn-warning btn-xs" type="button" value="수정"  onClick="fn_modify_goods('${goods.goods_id }','goods_point')"/>
 				</td>
 
 			</tr>
@@ -353,33 +347,15 @@ function fn_modify_goods(goods_id, attribute, goods_size, goods_color){
 				  <input  name="goods_production_date"  type="date"  value="${goods.goods_production_date }" />
 				</td>
 				<td>
-				 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_production_date')"/>
+				 <input class="btn btn-warning btn-xs" type="button" value="수정"  onClick="fn_modify_goods('${goods.goods_id }','goods_production_date')"/>
 				</td>
 
 			</tr>
-			
-			<%-- <tr>
-				<td >상품 총 페이지수</td>
-				<td><input name="goods_total_page" type="text" size="40"  value="${goods.goods_total_page }"/></td>
-				<td>
-				 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_total_page"/>
-				</td>
-
-			</tr> --%>
-			
-			<%-- <tr>
-				<td >ISBN</td>
-				<td><input name="goods_isbn" type="text" size="40" value="${goods.goods_isbn }" /></td>
-				<td>
-				 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_isbn')"/>
-				</td>
-
-			</tr> --%>
 			<tr>
 				<td >상품 배송비</td>
-				<td><input name="goods_delivery_price" type="text" size="40"  value="${goods.goods_delivery_price }"/></td>
+				<td><input class="form-control" name="goods_delivery_price" type="text" size="40"  value="${goods.goods_delivery_price }"/></td>
 				<td>
-				 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_delivery_price')"/>
+				 <input class="btn btn-warning btn-xs" type="button" value="수정"  onClick="fn_modify_goods('${goods.goods_id }','goods_delivery_price')"/>
 				</td>
 
 			</tr>
@@ -389,7 +365,7 @@ function fn_modify_goods(goods_id, attribute, goods_size, goods_color){
 				  <input name="goods_delivery_date" type="date"  value="${goods.goods_delivery_date }" />
 				  </td>
 				<td>
-				 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_delivery_date')"/>
+				 <input class="btn btn-warning btn-xs" type="button" value="수정"  onClick="fn_modify_goods('${goods.goods_id }','goods_delivery_date')"/>
 				</td>
 
 			</tr>
@@ -408,7 +384,7 @@ function fn_modify_goods(goods_id, attribute, goods_size, goods_color){
 				<input  type="hidden" name="h_goods_status" value="${goods.goods_status }"/>
 				</td>
 				<td>
-				 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_status')"/>
+				 <input class="btn btn-warning btn-xs" type="button" value="수정"  onClick="fn_modify_goods('${goods.goods_id }','goods_status')"/>
 				</td>
 			</tr>
 			<tr>
@@ -418,40 +394,7 @@ function fn_modify_goods(goods_id, attribute, goods_size, goods_color){
 			</tr>
 				</table>	
 			</DIV>
-		<%-- 	<DIV class="tab_content" id="tab2">
-				<h4>책목차</h4>
-				<table>	
-				<tr>
-					<td >상품목차</td>
-					<td><textarea  rows="100" cols="80" name="goods_contents_order">
-					  ${goods.goods_contents_order }
-					</textarea>
-					</td>
-					<td>
-					&nbsp;&nbsp;&nbsp;&nbsp;
-					 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_contents_order')"/>
-					</td>
-				</tr>
-				</table>	
-			</DIV> --%>
-		<%-- 	<DIV class="tab_content" id="tab3">
-				<H4>상품 저자 소개</H4>
-				<P>
-				 <table>
-	  				 <tr>
-						<td >상품 저자 소개</td>
-						<td><textarea  rows="100" cols="80" name="goods_writer_intro">
-						  ${goods.goods_writer_intro }
-						</textarea>
-						</td>
-						<td>
-						&nbsp;&nbsp;&nbsp;&nbsp;
-						 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_writer_intro')"/>
-						</td>
-				   </tr>
-			   </table>
-				</P>
-			</DIV> --%>
+		
 			<DIV class="tab_content" id="tab4">
 				<H4>상품소개</H4>
 				<P>
@@ -464,44 +407,13 @@ function fn_modify_goods(goods_id, attribute, goods_size, goods_color){
 						</td>
 						<td>
 						&nbsp;&nbsp;&nbsp;&nbsp;
-						 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_intro')"/>
+						 <input class="btn btn-warning btn-xs" type="button" value="수정"  onClick="fn_modify_goods('${goods.goods_id }','goods_intro')"/>
 						</td>
 					</tr>
 			    </table>
 				</P>
 			</DIV>
-			<%-- <DIV class="tab_content" id="tab5">
-				<H4>출판사 상품 평가</H4>
-				<P>
-				<table>
-					<tr>
-						<td><textarea  rows="100" cols="80" name="goods_publisher_comment">
-						  ${goods.goods_publisher_comment }
-						</textarea>
-						</td>
-						<td>
-						&nbsp;&nbsp;&nbsp;&nbsp;
-						 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_publisher_comment')"/>
-						</td>
-					</tr>
-			</table>
-				</P>
-			</DIV>--%>
-		<%-- 	<DIV class="tab_content" id="tab6">
-				<H4>추천사</H4>
-				 <table>
-					 <tr>
-						<td>추천사</td>
-						<td><textarea  rows="100" cols="80" name="goods_recommendation">
-						  ${goods.goods_recommendation }
-						</textarea>
-						</td>
-						<td>
-						&nbsp;&nbsp;&nbsp;&nbsp;
-						 <input  type="button" value="수정반영"  onClick="fn_modify_goods('${goods.goods_id }','goods_recommendation')"/>
-						</td>
-					</tr>
-			    </table> --%>
+			
 			</DIV>
 			<DIV class="tab_content" id="tab7">
 			   <form id="FILE_FORM" method="post" enctype="multipart/form-data"  >
@@ -526,7 +438,7 @@ function fn_modify_goods(goods_id, attribute, goods_size, goods_color){
 						  &nbsp;&nbsp;&nbsp;&nbsp;
 						</td>
 						 <td>
-						 <input  type="button" value="수정"  onClick="modifyImageFile('main_image','${item.goods_id}','${item.image_id}','${item.fileType}')"/>
+						 <input class="btn btn-warning btn-xs" type="button" value="수정"  onClick="modifyImageFile('main_image','${item.goods_id}','${item.image_id}','${item.fileType}')"/>
 						</td> 
 					</tr>
 					<tr>
@@ -551,8 +463,8 @@ function fn_modify_goods(goods_id, attribute, goods_size, goods_color){
 						  &nbsp;&nbsp;&nbsp;&nbsp;
 						</td>
 						 <td>
-						 <input  type="button" value="수정"  onClick="modifyImageFile('detail_image','${item.goods_id}','${item.image_id}','${item.fileType}')"/>
-						  <input  type="button" value="삭제"  onClick="deleteImageFile('${item.goods_id}','${item.image_id}','${item.fileName}','${itemNum.count-1}')"/>
+						 <input class="btn btn-warning btn-xs" type="button" value="수정"  onClick="modifyImageFile('detail_image','${item.goods_id}','${item.image_id}','${item.fileType}')"/>
+						  <input class="btn btn-danger btn-xs" type="button" value="삭제"  onClick="deleteImageFile('${item.goods_id}','${item.image_id}','${item.fileName}','${itemNum.count-1}')"/>
 						</td> 
 					</tr>
 					<tr>
@@ -573,7 +485,7 @@ function fn_modify_goods(goods_id, attribute, goods_size, goods_color){
 		   <tr>
 		     <td align=center colspan=2>
 		     
-		     <input   type="button" value="이미지파일추가하기"  onClick="fn_addFile()"  />
+		     <input class="btn btn-primary"  type="button" value="이미지파일추가하기"  onClick="fn_addFile()"  />
 		   </td>
 		</tr> 
 	</table>

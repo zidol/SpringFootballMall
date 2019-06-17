@@ -27,7 +27,8 @@ public class AdminMemberControllerImpl extends BaseController  implements AdminM
 	
 	@RequestMapping(value="/adminMemberMain.do" ,method={RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView adminMemberMain(@RequestParam Map<String, String> dateMap,
-			                           HttpServletRequest request, HttpServletResponse response)  throws Exception{
+			                           HttpServletRequest request, 
+			                           HttpServletResponse response)  throws Exception{
 		String viewName=(String)request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 
@@ -47,7 +48,6 @@ public class AdminMemberControllerImpl extends BaseController  implements AdminM
 		}
 		dateMap.put("beginDate", beginDate);
 		dateMap.put("endDate", endDate);
-		
 		
 		HashMap<String,Object> condMap=new HashMap<String,Object>();
 		if(section== null) {
@@ -80,15 +80,6 @@ public class AdminMemberControllerImpl extends BaseController  implements AdminM
 		return mav;
 		
 	}
-	@RequestMapping(value="/memberDetail.do" ,method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView memberDetail(HttpServletRequest request, HttpServletResponse response)  throws Exception{
-		String viewName=(String)request.getAttribute("viewName");
-		ModelAndView mav = new ModelAndView(viewName);
-		String member_id=request.getParameter("member_id");
-		MemberVO member_info=adminMemberService.memberDetail(member_id);
-		mav.addObject("member_info",member_info);
-		return mav;
-	}
 	
 	@RequestMapping(value="/modifyMemberInfo.do" ,method={RequestMethod.POST,RequestMethod.GET})
 	public void modifyMemberInfo(HttpServletRequest request, HttpServletResponse response)  throws Exception{
@@ -107,8 +98,7 @@ public class AdminMemberControllerImpl extends BaseController  implements AdminM
 			val=value.split(",");
 			memberMap.put("tel1",val[0]);
 			memberMap.put("tel2",val[1]);
-			memberMap.put("tel3",val[2]);
-			
+			memberMap.put("tel3",val[2]);	
 		}else if(mod_type.equals("hp")){
 			val=value.split(",");
 			memberMap.put("hp1",val[0]);
@@ -138,6 +128,16 @@ public class AdminMemberControllerImpl extends BaseController  implements AdminM
 		pw.print("mod_success");
 		pw.close();		
 		
+	}
+	
+	@RequestMapping(value="/memberDetail.do" ,method={RequestMethod.POST,RequestMethod.GET})
+	public ModelAndView memberDetail(HttpServletRequest request, HttpServletResponse response)  throws Exception{
+		String viewName=(String)request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView(viewName);
+		String member_id=request.getParameter("member_id");
+		MemberVO member_info=adminMemberService.memberDetail(member_id);
+		mav.addObject("member_info",member_info);
+		return mav;
 	}
 	
 	@RequestMapping(value="/deleteMember.do" ,method={RequestMethod.POST})

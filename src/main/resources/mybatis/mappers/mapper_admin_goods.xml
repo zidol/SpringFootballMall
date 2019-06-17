@@ -285,9 +285,9 @@
 	</update>
 	
 	<!-- 상품이미지 테이블에서 상품 이미지를 삭제 -->
-	<delete id="deleteGoodsImage" parameterType="String">
+	<delete id="deleteGoodsImage" parameterType="int">
 		<![CDATA[
-			DELETE FORM GOODS_IMAGE
+			DELETE FROM GOODS_IMAGE
 			 WHERE IMAGE_ID=#{image_id} 
 		]]>
 	</delete>

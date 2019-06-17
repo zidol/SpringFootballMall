@@ -407,7 +407,7 @@ function fn_detail_search(){
 <DIV class="clear"></DIV>
 <TABLE class="list_view">
 		<TBODY align=center >
-			<tr style="background:#33ff00" >
+			<tr style="background:#dfdfdf" >
 				<td>상품번호</td>
 				<td>상품이름</td>
 				<td>제조사</td>
@@ -482,12 +482,11 @@ function fn_detail_search(){
 		</TBODY>
 		
 	</TABLE>
-	<DIV class="clear"></DIV>
-	<br><br><br>
-<H3>상품등록하기</H3>
+	<div class="clear"></div>
+	<br>
 <DIV id="search">
 	<form action="${contextPath}/admin/goods/addNewGoodsForm.do">
-		<input   type="submit" value="상품 등록하기">
+		<input class="btn btn-primary" type="submit" value="상품 등록하기">
 	</form>
 </DIV>
 </body>

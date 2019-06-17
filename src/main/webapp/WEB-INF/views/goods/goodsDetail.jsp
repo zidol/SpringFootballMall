@@ -150,7 +150,7 @@ function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
 	</hgroup>
 	<div id="goods_image">
 		<figure>
-			<img alt="HTML5 &amp; CSS3"
+			<img class="img-thumbnail" alt="HTML5 &amp; CSS3"
 				src="${contextPath}/thumbnails.do?goods_id=${goods.goods_id}&fileName=${goods.goods_fileName}">
 		</figure>
 	</div>
