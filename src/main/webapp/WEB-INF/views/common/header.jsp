@@ -89,44 +89,7 @@
 <link href="${contextPath}/resources/bootstrap-3.3.2-dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-	 <%-- <div id="logo">
-	<a href="${contextPath}/main/main.do">
-		<img width="176" height="80" alt="FootBallMall" src="${contextPath}/resources/image/FootballMallLogo.jpg">
-		</a>
-	</div>
-	<div id="head_link">
-		<ul>
-		   <c:choose>
-		     <c:when test="${isLogOn==true and not empty memberInfo }">
-			   <li><a href="${contextPath}/member/logout.do">로그아웃</a></li>
-			   <li><a href="${contextPath}/mypage/myPageMain.do">마이페이지</a></li>
-			   <li><a href="${contextPath}/cart/myCartList.do">장바구니</a></li>
-			   <li><a href="#">주문배송</a></li>
-			 </c:when>
-			 <c:otherwise>
-			   <li><a href="${contextPath}/member/loginForm.do">로그인</a></li>
-			   <li><a href="${contextPath}/member/memberForm.do">회원가입</a></li> 
-			 </c:otherwise>
-			</c:choose>
-			   <li><a href="#">고객센터</a></li>
-      <c:if test="${isLogOn==true and memberInfo.member_id =='admin' }">  
-	   	   <li class="no_line"><a href="${contextPath}/admin/goods/adminGoodsMain.do">관리자</a></li>
-	    </c:if>
-			  
-		</ul>
-	</div>
-	<br>
-	<div id="search" >
-		<form name="frmSearch" action="${contextPath}/goods/searchGoods.do" >
-			<input name="searchWord" class="main_input" type="text"  onKeyUp="keywordSearch()"> 
-			<input type="submit" name="search" class="btn1"  value="검 색" >
-		</form>
-	</div>
-   <div id="suggest">
-        <div id="suggestList"></div>
-   </div>  --%>
-   
-   
+
 <nav class="navbar navbar-default navbar-inverse">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -151,15 +114,12 @@
 		     <li></li>
 		     <li></li>
 		     <li></li>
-			   <li><a href="${contextPath}/mypage/myPageMain.do">마이페이지</a></li>
-			   <li><a href="${contextPath}/cart/myCartList.do">장바구니</a></li>
-		<c:if test="${isLogOn==true and memberInfo.member_id =='admin' }">  
-	   	   <li class="no_line"><a href="${contextPath}/admin/goods/adminGoodsMain.do">관리자</a></li>
-	    </c:if>
+		   <li><a href="${contextPath}/mypage/myPageMain.do">마이페이지</a></li>
+		   <li><a href="${contextPath}/cart/myCartList.do">장바구니</a></li>
+			<c:if test="${isLogOn==true and memberInfo.member_id =='admin' }">  
+		   	   <li class="no_line"><a href="${contextPath}/admin/goods/adminGoodsMain.do">관리자</a></li>
+		    </c:if>
 			 </c:when>
-			 <c:otherwise>
-			   
-			 </c:otherwise>
 			</c:choose>
       </ul>
       <form class="navbar-form navbar-right" name="frmSearch" action="${contextPath}/goods/searchGoods.do" role="search">
