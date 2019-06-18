@@ -177,7 +177,6 @@ function fn_order_all_cart_goods(){
 				order_goods_size=cart_goods_size[i].value;
 				cart_goods_qty[i].value="";
 				cart_goods_qty[i].value=order_goods_id+":"+order_goods_qty+":"+order_goods_size;
-				alert(cart_goods_qty[i].value);
 				//console.log(cart_goods_qty[i].value);
 			}
 		}	
@@ -187,7 +186,6 @@ function fn_order_all_cart_goods(){
 		order_goods_size=cart_goods_size.value;
 		cart_goods_qty.value=order_goods_id+":"+order_goods_qty+":"+order_goods_size;
 		//alert(select_goods_qty.value);
-		alert(cart_goods_qty.value);
 	}
 		
  	objForm.method="post";
@@ -201,7 +199,7 @@ function fn_order_all_cart_goods(){
 	<form name="frm_order_all_cart">
 		<table class="list_view">
 			<tbody align=center>
-				<tr style="background: #33ff00">
+				<tr style="background: #dfdfdf ">
 					<td class="fixed">구분</td>
 					<td colspan=2 class="fixed">상품명</td>
 					<td>정가</td>
@@ -259,16 +257,9 @@ function fn_order_all_cart_goods(){
 									<strong><fmt:formatNumber value="${item.goods_sales_price*0.9*cart_goods_qty}" type="number" var="total_sales_price" />${total_sales_price}원</strong>
 								</td>
 								<td>
-									<a href="javascript:fn_order_each_goods('${item.goods_id }','${item.goods_title }','${item.goods_sales_price}','${item.goods_fileName}');">
-										<img width="75" alt="" src="${contextPath}/resources/image/btn_order.jpg">
-									</a>
-									<br>
-									<a href="#"> <img width="75" alt="" src="${contextPath}/resources/image/btn_order_later.jpg"></a>
-									<br> 
-									<a href="#"> <img width="75" alt="" src="${contextPath}/resources/image/btn_add_list.jpg"></a>
-									<br> 
-									<a href="javascript:delete_cart_goods('${cart_id}');"> <img width="75" alt=""
-										src="${contextPath}/resources/image/btn_delete.jpg"></a>
+									<input type="button" class="btn btn-primary btn-xs" 
+									onclick="javascript:fn_order_each_goods('${item.goods_id }','${item.goods_title }','${item.goods_sales_price}','${item.goods_fileName}');" value="주문하기"><br><br>
+									<input type="button" class="btn btn-default btn-xs" onclick="javascript:delete_cart_goods('${cart_id}');" value="삭제">
 								</td>
 							</tr>
 							<c:set var="totalGoodsPrice" value="${totalGoodsPrice+item.goods_sales_price*0.9*cart_goods_qty }" />
@@ -337,11 +328,8 @@ function fn_order_all_cart_goods(){
 		</table>
 		<div align="center">
 			<br>
-			<br> <a href="javascript:fn_order_all_cart_goods()"> <img
-				width="75" alt=""
-				src="${contextPath}/resources/image/btn_order_final.jpg">
-			</a> <a href="${contextPath}/main/main.do"> <img width="75" alt=""
-				src="${contextPath}/resources/image/btn_shoping_continue.jpg">
-			</a>
+			<br> 
+			<input type="button" class="btn btn-primary" onclick="javascript:fn_order_all_cart_goods()" value="주문하기">
+			<input type="button" class="btn btn-default" onclick="location.href='${contextPath}/main/main.do'" value="쇼핑계속하기">
 		</div>
 	</form>
