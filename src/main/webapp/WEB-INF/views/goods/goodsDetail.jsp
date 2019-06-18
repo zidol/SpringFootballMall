@@ -75,7 +75,7 @@
 	}
 
 	function imagePopup(type) {
-	zx5	if (type == 'open') {
+		if (type == 'open') {
 			// 팝업창을 연다.
 			jQuery('#layer').attr('style', 'visibility:visible');
 
@@ -96,7 +96,9 @@ function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
 	
 	 if(isLogOn=="false" || isLogOn=='' ){
 		alert("로그인 후 주문이 가능합니다!!!");
-	}
+	} 
+	
+	
 	var total_price,final_total_price;
 	var order_goods_qty=document.getElementById("order_goods_qty");
 	var order_goods_size=document.getElementById("order_goods_size");
