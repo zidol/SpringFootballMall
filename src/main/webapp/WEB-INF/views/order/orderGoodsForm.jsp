@@ -877,12 +877,8 @@ function fn_process_pay_order(){
 	<center>
 		<br>
 		<br> 
-		<a href="javascript:fn_show_order_detail();"> 
-			<img width="125" alt="" src="${contextPath}/resources/image/btn_gulje.jpg">
-		</a> 
-		<a href="${contextPath}/main/main.do"> 
-		   <img width="75" alt="" src="${contextPath}/resources/image/btn_shoping_continue.jpg">
-		</a>
+		<input type="button" class="btn btn-danger"  onclick="javascript:fn_show_order_detail();" value="결제하기">
+		<input type="button" class="btn btn-default"  onclick="${contextPath}/main/main.do" value="쇼핑계속하기">
 	
 <div class="clear"></div>		
 	<div id="layer" style="visibility:hidden">
