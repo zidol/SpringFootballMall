@@ -401,7 +401,7 @@ footer img {
 }
 #sticky {
 	/* padding: 10px 5px; border-radius: 10px; top: 115px; width: 82px; font-size: 0.75em; float: right; position: relative; background-color: rgb(153, 153, 153); */
-	padding: 10px 5px; border-radius: 10px; top: 115px; width: 100px; font-size: 0.75em; float: right; position: relative; background-color:#D5D5D5;
+	padding: 10px 5px; border-radius: 10px; top: 115px; width: 105px; font-size: 0.75em; float: right; position: relative; background-color:#D5D5D5;
 	
 }
 #sticky ul {
@@ -568,7 +568,7 @@ article h1_TITLE {
 	margin: 5px 0px 0px;
 }
 .main_book .book:hover {
-	border: 2px solid rgb(255, 0, 0); border-image: none; background-image: none;
+	box-shadow: 1px 1px 20px #000;
 }
 .main_book .no_back.book {
 	background-image: none;
