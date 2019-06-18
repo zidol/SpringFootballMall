@@ -36,8 +36,8 @@
 	top: 0%;
 	width: 60%;
 	height: 100%;
-	background-color:#ccff99;
-	border: 2px solid  #0000ff;
+	background-color:#dfdfdf;
+	border: 2px solid  #000000;
 }
 
 #close {
@@ -518,7 +518,7 @@ function fn_process_pay_order(){
 <form  name="form_order">	
 	<table class="list_view">
 		<tbody align=center>
-			<tr style="background: #33ff00">
+			<tr style="background: #dfdfdf ">
 				<td colspan=2 class="fixed">주문상품명</td>
 				<td>수량</td>
 				<td>사이즈</td>
@@ -1003,7 +1003,7 @@ function fn_process_pay_order(){
 				   </tr>
 				   <tr>
 				    <td colspan=2 align=center>
-				    <input  name="btn_process_pay_order" type="button" onClick="fn_process_pay_order()" value="최종결제하기">
+				    <input type="button" class="btn btn-danger"  onclick="fn_process_pay_order()" value="최종결제하기">
 				    </td>
 				   </tr>
 				</tbody>
