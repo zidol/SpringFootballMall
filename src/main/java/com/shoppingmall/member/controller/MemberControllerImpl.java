@@ -61,6 +61,7 @@ public class MemberControllerImpl extends BaseController implements MemberContro
 		HttpSession session = request.getSession();
 		session.setAttribute("isLogOn", false);
 		session.removeAttribute("memberInfo");
+		session.removeAttribute("quickGoodsList");
 		mav.setViewName("redirect:/main/main.do");
 		return mav;
 	}
