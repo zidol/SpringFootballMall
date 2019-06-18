@@ -32,8 +32,8 @@
 	top: 45%;
 	width: 300px;
 	height: 200px;
-	background-color: #ccffff;
-	border: 3px solid #87cb42;
+	background-color: #dfdfdf ;
+	border: 3px solid #000000;
 }
 
 #close {
@@ -59,8 +59,6 @@
 				
 			},
 			success : function(data, textStatus) {
-				//alert(data);
-			//	$('#message').append(data);
 				if(data.trim()=='add_success'){
 					imagePopup('open', '.layer01');	
 				}else if(data.trim()=='already_existed'){
@@ -72,13 +70,12 @@
 				alert("에러가 발생했습니다."+data);
 			},
 			complete : function(data, textStatus) {
-				//alert("작업을완료 했습니다");
 			}
 		}); //end ajax	
 	}
 
 	function imagePopup(type) {
-		if (type == 'open') {
+	zx5	if (type == 'open') {
 			// 팝업창을 연다.
 			jQuery('#layer').attr('style', 'visibility:visible');
 
@@ -99,9 +96,7 @@ function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
 	
 	 if(isLogOn=="false" || isLogOn=='' ){
 		alert("로그인 후 주문이 가능합니다!!!");
-	} 
-	
-	
+	}
 	var total_price,final_total_price;
 	var order_goods_qty=document.getElementById("order_goods_qty");
 	var order_goods_size=document.getElementById("order_goods_size");
@@ -224,10 +219,12 @@ function fn_order_each_goods(goods_id,goods_title,goods_sales_price,fileName){
 			</tbody>
 		</table>
 		<ul>
-			<li><a class="buy" href="javascript:fn_order_each_goods('${goods.goods_id }','${goods.goods_title }','${goods.goods_sales_price}','${goods.goods_fileName}');">구매하기 </a></li>
-			<li><a class="cart" href="javascript:add_cart('${goods.goods_id }')">장바구니</a></li>
-			
-			<li><a class="wish" href="#">위시리스트</a></li>
+			<li><input type="button" class="btn btn-danger btn-lg" 
+			onclick="javascript:fn_order_each_goods('${goods.goods_id }','${goods.goods_title }','${goods.goods_sales_price}','${goods.goods_fileName}');" 
+			value="구매하기"></li>
+			<li><input type="button" class="btn btn-warning btn-lg" 
+			onclick="javascript:add_cart('${goods.goods_id }')" 
+			value="장바구니"></li>
 		</ul>
 	</div>
 	<div class="clear"></div>
