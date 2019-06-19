@@ -166,9 +166,7 @@
 	<center>
 		<br>
 		<br> 
-		<a href="${contextPath}/main/main.do"> 
-		   <IMG width="75" alt="" src="${contextPath}/resources/image/btn_shoping_continue.jpg">
-		</a>
+		<input type="button" class="btn btn-default" onclick="location.href='${contextPath}/main/main.do'" value="쇼핑계속하기">
 <DIV class="clear"></DIV>		
 	
 			
