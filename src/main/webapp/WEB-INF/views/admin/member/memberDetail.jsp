@@ -237,7 +237,6 @@ function fn_modify_member_info(member_id,mod_type){
 			},
 			complete : function(data, textStatus) {
 				//alert("작업을완료 했습니다");
-
 				document.location.href="${contextPath}/admin/member/memberDetail.do?member_id=${member_info.member_id}";
 			}
 		}); //end ajax
@@ -264,7 +263,7 @@ function fn_delete_member(member_id ,del_yn){
 </head>
 
 <body>
-	<h3>내 상세 정보</h3>
+	<h3>${member_info.member_name}님의 정보</h3>
 <form name="frm_mod_member">	
 	<div id="detail_table">
 		<table>

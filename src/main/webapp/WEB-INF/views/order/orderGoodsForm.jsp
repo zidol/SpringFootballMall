@@ -249,6 +249,7 @@ var card_com_name;
 var card_pay_month;
 var pay_orderer_hp_num;
 
+//기존 양식에 innerHTML로 주문 상품 데이터 출력
 function fn_show_order_detail(){
 	goods_id="";
 	goods_title="";
@@ -286,16 +287,6 @@ function fn_show_order_detail(){
 			
 		}	
 	}
-	
-	/* if(h_order_goods_size.length <2 ||h_order_goods_size.length==null){
-		order_goods_size+=h_order_goods_size.value;
-	}else{
-		for(var i=0; i<h_goods_title.length;i++){
-			order_goods_size+= h_order_goods_size[i].value+"<br>";
-			
-		}	
-	} */
-	
 	
 	if(h_goods_fileName.length <2 ||h_goods_fileName.length==null){
 		goods_fileName+=h_goods_fileName.value;
@@ -427,6 +418,7 @@ function fn_show_order_detail(){
 	imagePopup('open');
 }
 
+//form 생성해서 payToOrderGoods.do 호출
 function fn_process_pay_order(){
 	
 	alert("최종 결제하기");
