@@ -376,7 +376,7 @@ function fn_modify_goods(goods_id, attribute, goods_size, goods_color){
 				<select name="goods_status">
 				  <option value="bestseller"  >베스트셀러</option>
 				  <option value="steadyseller" >스테디셀러</option>
-				  <option value="newproduct" >신간</option>
+				  <option value="newproduct" >신상품</option>
 				  <option value="on_sale" >판매중</option>
 				  <option value="buy_out"  selected>품절</option>
 				  <option value="out_of_print" >절판</option>
